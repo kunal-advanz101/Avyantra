@@ -443,7 +443,7 @@ export class CommonService {
 
   getMedicalRecordsCount(hospitalId,branchId){
     return this.http.get(
-      this.baseUrl +'patient/medicalRecordCount/'+hospitalId+'/'+branchId, this.jwt()
+     this.baseUrl +'patient/medicalRecordCount/'+hospitalId+'/'+branchId, this.jwt()
     );
   }
 

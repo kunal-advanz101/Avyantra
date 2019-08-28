@@ -20,6 +20,7 @@ import { HospitalStaffComponent } from './hospital-staff/hospital-staff.componen
 import { MedicalRecordsComponent } from './medical-records/medical-records.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ReferralDoctorStaffComponent } from './referral-doctor-staff/referral-doctor-staff.component';
+import { HospitalStaffDashboardComponent } from './user-dashboards/hospital-staff-dashboard/hospital-staff-dashboard.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -68,7 +69,8 @@ const routes: Routes = [
       {path:'staff',component:HospitalStaffComponent},
       {path:'medical-records', component:MedicalRecordsComponent},
       {path:'my-profile', component:MyProfileComponent},
-      {path:'referral-doctor', component:ReferralDoctorStaffComponent}
+      {path:'referral-doctor', component:ReferralDoctorStaffComponent},
+      {path:'hospital-staff', component:HospitalStaffDashboardComponent}
     ],
   },
   {

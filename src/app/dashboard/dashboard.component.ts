@@ -284,4 +284,11 @@ export class DashboardComponent implements OnInit {
         this.selectedItem='baby-appearence';
         this.router.navigate(['dashboard/baby-appearence']);
   }
+
+  goToDashboard(){
+    this.dataService.clearOption();
+    this.readingDataService.reset();
+    this.readingDataService.clearReadingFormData();
+    this.router.navigate(['admin/hospital-staff']);
+  }
 }

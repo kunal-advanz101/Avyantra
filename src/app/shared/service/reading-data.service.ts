@@ -9,6 +9,7 @@ export class ReadingDataService {
 public readingFormsData={};
 public allFormValidationStatus={};
 public reading;
+public babyReadingData={};
 public checkComponentState = {
   //'mother-profile':false,
   'baby-appear':false,
@@ -125,6 +126,14 @@ openForm = this.showBabyProfile.asObservable();
 
   unsubscribeBabyProfile(){
     this.showBabyProfile.unsubscribe();
+  }
+
+  setBabyReadingData(data){
+    this.babyReadingData=data;
+  }
+
+  getBabyReadingData(){
+    return this.babyReadingData;
   }
   
 }

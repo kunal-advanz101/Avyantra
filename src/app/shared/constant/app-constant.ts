@@ -10,4 +10,6 @@ export class AppConstant {
   public hospital_branch_type=3;
   public hospital_type_login="Hospital";
   public branch_type_login="Hospital Branch";
+  public staff_type_login="Hospital Staff";
+  public referral_doctor_login="Referral Doctor";
 }

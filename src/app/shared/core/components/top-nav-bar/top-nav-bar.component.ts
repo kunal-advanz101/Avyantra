@@ -16,6 +16,7 @@ export class TopNavBarComponent implements OnInit {
   hospitalName:string;
   loginHospital:any={};
   hospitalBranchName:string;
+  staffUser=["DashboardStaff","MessageCenter","MyProfile"];
   branchAdmin=["Dashboard","MedicalRecords","HospitalStaff","Settings","MessageCenter","MyProfile"];
   hospitalAdmin=["Dashboard","MedicalRecords","HospitalStaff","Settings","MessageCenter","MyProfile","AddBranch"];
   ngOnInit() {
@@ -45,6 +46,9 @@ export class TopNavBarComponent implements OnInit {
     }
     if(this.loginHospital['user_type']==this.constant.branch_type_login){
       return this.branchAdmin.includes(tabName);
+    }
+    if(this.loginHospital['user_type']==this.constant.staff_type_login){
+      return this.staffUser.includes(tabName);
     }
   }
 

@@ -241,6 +241,9 @@ export class SearchComponent implements OnInit {
     }
     //vim.readingDataService.searchResetComponentFlags();
     vim.readingDataService.showBabyProfileForm("message");
+    if(localStorage.getItem('staffMedicalRecord')) {
+      localStorage.removeItem('staffMedicalRecord');
+    }
     vim.router.navigate(["dashboard/baby-profile"]);
     localStorage.removeItem('reading');
   }

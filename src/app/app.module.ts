@@ -68,6 +68,7 @@ import { ReferralDoctorStaffComponent } from './referral-doctor-staff/referral-d
 // import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {passwordPipe} from './shared/pipes/encrypt-password.pipe';
 import { userTypePipe } from './shared/pipes/user-type.pipe';
+import { HospitalStaffDashboardComponent } from './user-dashboards/hospital-staff-dashboard/hospital-staff-dashboard.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true
 };
@@ -99,7 +100,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SettingsComponent,
     MedicalRecordsComponent,
     ReferralDoctorStaffComponent,
-    MyProfileComponent,passwordPipe,userTypePipe],
+    MyProfileComponent,passwordPipe,userTypePipe, HospitalStaffDashboardComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,

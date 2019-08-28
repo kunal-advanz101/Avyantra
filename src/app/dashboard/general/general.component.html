@@ -1,4 +1,4 @@
-<div class="wrapper fadeInDown" id="custom-scroll-header">
+<div class="" id="custom-scroll-header">
   <div id="formContent">
 
       <div class="container">
@@ -287,7 +287,7 @@
               <div class="form-group">
                 <label for="babyMedicalRecord">Baby Medical Record Number</label>
                 <input type="text" class="form-control" name="" id="babyMedicalRecordId"
-                  formControlName="babyMedicalRecord" autocomplete="off">
+                  formControlName="babyMedicalRecord" autocomplete="off" readonly>
                 <div *ngIf="generalForm.controls['babyMedicalRecord'].invalid && (generalForm.controls['babyMedicalRecord'].dirty ||
                       generalForm.controls['babyMedicalRecord'].touched || submitted)" class="error-msg">
                   <div *ngIf="generalForm.controls['babyMedicalRecord'].errors.required">
@@ -301,7 +301,7 @@
                 <label for="babyMotherMedicalRecord">Mother Medical Record Number</label>
 
                 <input type="text" class="form-control" form="" id="" formControlName="babyMotherMedicalRecord"
-                  autocomplete="off">
+                  autocomplete="off" readonly>
                 <div *ngIf="generalForm.controls['babyMotherMedicalRecord'].invalid && (generalForm.controls['babyMotherMedicalRecord'].dirty ||
                       generalForm.controls['babyMotherMedicalRecord'].touched || submitted)" class="error-msg">
                   <div *ngIf="generalForm.controls['babyMotherMedicalRecord'].errors.required">
@@ -317,7 +317,7 @@
               <div class="form-group">
                 <label for="babyMedicalRecord">Baby Medical Record Number</label>
                 <input type="text" readonly class="form-control" name="" id="babyMedicalRecordId"
-                  formControlName="babyMedicalRecord">
+                  formControlName="babyMedicalRecord" readonly>
                 <div *ngIf="generalForm.controls['babyMedicalRecord'].invalid && (generalForm.controls['babyMedicalRecord'].dirty ||
                         generalForm.controls['babyMedicalRecord'].touched || submitted)" class="error-msg">
                   <div *ngIf="generalForm.controls['babyMedicalRecord'].errors.required">
@@ -330,7 +330,7 @@
               <div class="form-group">
                 <label for="babyMotherMedicalRecord">Baby Mother Medical Record Number</label>
                 <input readonly type="text" class="form-control" form="" id=""
-                  formControlName="babyMotherMedicalRecord">
+                  formControlName="babyMotherMedicalRecord" readonly>
                 <div *ngIf="generalForm.controls['babyMotherMedicalRecord'].invalid && (generalForm.controls['babyMotherMedicalRecord'].dirty ||
                         generalForm.controls['babyMotherMedicalRecord'].touched || submitted)" class="error-msg">
                   <div *ngIf="generalForm.controls['babyMotherMedicalRecord'].errors.required">
@@ -351,7 +351,7 @@
             <div class="col-md-6" *ngIf="this.isBabyCreateGeneral">
               <div class="form-group">
                 <label for="record_type">Record Id</label>
-                <input type="text" readonly class="form-control" name="" id="">
+                <input type="text" readonly formControlName="study_id" class="form-control" name="" id="">
               </div>
             </div>
             <div class="col-md-6">

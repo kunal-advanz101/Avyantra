@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, AfterViewInit, Output, EventEmitter } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router, NavigationEnd } from "@angular/router";
+import { Router, NavigationEnd, ActivatedRoute } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { CommonService } from "../../shared/service/common/common.service";
 import * as _ from "underscore";
@@ -79,16 +79,17 @@ export class GeneralComponent implements OnInit {
   public scrollbarOptions = { axis: "yx", theme: "minimal-dark" };
   updateFlag=false;
   studyId:number;
-
+  public babyReadingData;
   public customPatterns = { 'S': { pattern: new RegExp('\[a-zA-Z,/\]') } };
-
+  babyMedicalRecordNumber:string;
+  motherMedicalRecordNumber:string;
   @Output() tabsEvent: EventEmitter<any> = new EventEmitter();
   
   constructor(private formBuilder: FormBuilder, private router: Router, private toastr: ToastrService,
     private common_api: CommonService, public config: NgbModalConfig, private modalService: NgbModal,
     private commonAsyn: Common, private spinner: NgxSpinnerService, private datePipe: DatePipe, private appConstant: AppConstant,
     private dataService: DataService,
-    public readingDataService: ReadingDataService) {
+    public readingDataService: ReadingDataService, private route: ActivatedRoute,) {
     this.dataServiceObj = dataService.getOption();
 
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -107,13 +108,22 @@ export class GeneralComponent implements OnInit {
   resetComponent(){
     const vim = this;
     vim.dataServiceObj = vim.dataService.getOption();
+    vim.babyReadingData=JSON.parse(localStorage.getItem('staffMedicalRecord'));
+
+    if (!( _.isEmpty(vim.babyReadingData)) && ( _.isEmpty(vim.dataServiceObj))) {
+      vim.id=vim.babyReadingData['study_id'];
+      vim.hospital_id=vim.babyReadingData['hospital_id']
+      vim.babyMedicalRecordNumber=vim.babyReadingData['baby_medical_record_number']
+      vim.motherMedicalRecordNumber=vim.babyReadingData['baby_mother_medical_record_number'];
+      vim.dataServiceObj=vim.babyReadingData;
+    }
     vim.isBabyEditGeneral=false;
     vim.is_api_call = true;
     vim.login_hospital = JSON.parse(localStorage.getItem("login_hospital"));
     vim.hospital_name = vim.login_hospital.hospital_name;
     vim.hospital_branch_name = vim.login_hospital.hospital_branch_name;
 
-    if (vim.dataServiceObj != undefined || vim.dataServiceObj.id != undefined) {
+    if (vim.dataServiceObj != undefined || vim.dataServiceObj.study_id != undefined) {
       vim.showMrNumber=true;
       vim.getMedicalRecordNumber=vim.dataServiceObj.baby_medical_record_number;
       vim.get_general(vim.dataServiceObj.study_id,  vim.login_hospital['id'], vim.page);
@@ -141,7 +151,14 @@ export class GeneralComponent implements OnInit {
   ngOnInit() {
     const vim = this;
     vim.dataServiceObj = vim.dataService.getOption();
-
+    vim.babyReadingData=JSON.parse(localStorage.getItem('staffMedicalRecord'));
+    if (!( _.isEmpty(vim.babyReadingData)) && ( _.isEmpty(vim.dataServiceObj))) {
+      vim.id=vim.babyReadingData['study_id'];
+      vim.hospital_id=vim.babyReadingData['hospital_id']
+      vim.babyMedicalRecordNumber=vim.babyReadingData['baby_medical_record_number']
+      vim.motherMedicalRecordNumber=vim.babyReadingData['baby_mother_medical_record_number'];
+      vim.dataServiceObj=vim.babyReadingData;
+    }
     vim.is_api_call = true;
     vim.isBabyEditGeneral=false;
     vim.login_hospital = JSON.parse(localStorage.getItem("login_hospital"));
@@ -224,8 +241,8 @@ export class GeneralComponent implements OnInit {
       hospital_id: vim.hospital_id,
       hospital_name: vim.hospital_name,
       hospital_branch_name: vim.hospital_branch_name,
-      babyMedicalRecord: ["", Validators.required],
-      babyMotherMedicalRecord: ["", Validators.required],
+      babyMedicalRecord: [vim.babyMedicalRecordNumber, Validators.required],
+      babyMotherMedicalRecord: [vim.motherMedicalRecordNumber, Validators.required],
       record_type: ["", Validators.required],
       baby_admission_type: ["", Validators.required],
       baby_birth_date: ["", Validators.required],
@@ -882,6 +899,7 @@ export class GeneralComponent implements OnInit {
           if (response["status"] == 404) {
             // vim.responseArray = [];
             vim.is_api_call = false;
+            vim.open(this.content,{});
             // localStorage.setItem('reading','R1');
           }
           else if (response["response"].length > 0) {
@@ -1013,37 +1031,6 @@ export class GeneralComponent implements OnInit {
       }
     );
   }
-
-  get_info_date(date) {
-    const vim = this;
-    if (date["month"].length == 1) {
-      date["month"] = "0" + date["month"];
-    }
-    let reqObj = {
-      study_id: vim.id,
-      date:
-        date["year"] + "-" + vim.appConstant.MONTH_ARRAY[date["month"] - 1] + "-" + date["day"]
-    };
-    const newdata = vim.common_api.get_order_record("search_general", reqObj);
-    newdata.subscribe(
-      response => {
-        console.error(response);
-        vim.responseArray = [];
-        vim.page = 99999999;
-        vim.success(response, "get_general");
-      },
-      error => {
-        console.error("errro", error);
-      }
-    );
-  }
-  get_date_order() {
-  }
-
-  validationCheck = str => {
-    const pattern = /^\d+$/;
-    return pattern.test(str);
-  };
 
   changeDropdown(dropdownVal, dropdownId) {
     var vim = this;

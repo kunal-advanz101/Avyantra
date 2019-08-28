@@ -6,6 +6,7 @@ import { ToastrService } from "ngx-toastr";
 import { Common } from "../shared/service/common/common";
 import { CookieService } from 'ngx-cookie-service';
 import { ReadingDataService } from '../shared/service/reading-data.service';
+import { AppConstant } from '../shared/constant/app-constant';
 
 @Component({
   selector: "app-login",
@@ -19,9 +20,7 @@ export class LoginComponent implements OnInit {
   password = "password";
   is_toggle = false;
   password_class = "fa fa-eye-slash";
-
   cookieValue = 'UNKNOWN';
-
   constructor(
     private formBuilder: FormBuilder,
     private loginApi: LoginService,
@@ -29,13 +28,11 @@ export class LoginComponent implements OnInit {
     private toastr: ToastrService,
     private commonAsyn: Common,
     private cookieService: CookieService,
-    private readingDataService:ReadingDataService
-  ) {
-    
+    private readingDataService:ReadingDataService,private constant:AppConstant 
+  ) {  
   }
 
   ngOnInit() {
-    // localStorage.clear();
     this.commonAsyn.isHide();
     this.loginForm = this.formBuilder.group({
       username: ["", Validators.required],
@@ -49,12 +46,6 @@ export class LoginComponent implements OnInit {
       }
   }
 
-  // convenience getter for easy access to form fields
-
-  /**
-   * @method : login
-   * @purpose :- user login here using this method
-   */
   async login() {
     this.submitted = true;
     if (this.loginForm.invalid) {
@@ -68,18 +59,10 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.commonAsyn.isHide();
-        console.error("errro", error);
       }
     );
   }
 
-  /**
-   *
-   * @param response
-   * @param api_type
-   * @method: success
-   * @purpose :-  it is a common helper
-   */
   success(response, api_type) {
     const vim = this;
     if (vim.isSuccess(response)) {
@@ -91,8 +74,8 @@ export class LoginComponent implements OnInit {
         this.cookieService.set( 'UserCookieValue', response["response"].username );
         this.cookieService.set( 'PasswordCookieValue', this.loginForm.value["password"] );
       }
-      
-      vim.router.navigateByUrl("/admin");
+      this.navIgateUser(response["response"]);
+      //vim.router.navigateByUrl("/admin");
       vim.toastr.success("", "Login Successful");
       vim.readingDataService.setActiveTab("default message");
       vim.readingDataService.showBabyProfileForm("message");
@@ -102,11 +85,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  /**
-   *
-   * @param response
-   * @method: it is a common herlper for check the status is 200 or not
-   */
   isSuccess(response) {
     if (response.hasOwnProperty("status") && response["status"] === 200) {
       return true;
@@ -118,12 +96,22 @@ export class LoginComponent implements OnInit {
     const vim = this;
     vim.router.navigate(["/forget_password"]);
   }
-  /**
-   * @method :- Signup
-   */
+
   signup() {
     const vim = this;
     vim.router.navigate(["/signup"]);
+  }
+
+  navIgateUser(response){
+    if(response['user_type']==this.constant.hospital_type_login || response['user_type']==this.constant.branch_type_login){
+      this.router.navigateByUrl("/admin");
+    }
+    if(response['user_type']==this.constant.staff_type_login){
+      this.router.navigateByUrl("/admin/hospital-staff");
+    }
+    if(response['user_type']==this.constant.referral_doctor_login){
+      this.router.navigateByUrl("/admin/referral-doctor");
+    }
   }
 
   show_password() {

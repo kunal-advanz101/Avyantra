@@ -55,7 +55,7 @@ export class MaternalComponent implements OnInit, OnChanges {
   login_hospital: any = {};
   responseArray = [];
   public dataServiceObj;
-
+  public babyReadingData;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -72,6 +72,12 @@ export class MaternalComponent implements OnInit, OnChanges {
   ngOnInit() {
     const vim = this;
     vim.dataServiceObj = vim.dataService.getOption(); 
+    vim.babyReadingData=JSON.parse(localStorage.getItem('staffMedicalRecord'));
+    if (!( _.isEmpty(vim.babyReadingData)) && ( _.isEmpty(vim.dataServiceObj))) {
+      vim.id=vim.babyReadingData['study_id'];
+      vim.hospital_id=vim.babyReadingData['hospital_id']
+      vim.dataServiceObj=vim.babyReadingData;
+    }
     vim.is_api_call = true;
     vim.login_hospital = JSON.parse(localStorage.getItem("login_hospital"));
     vim.createForm(vim.dataServiceObj.study_id);
