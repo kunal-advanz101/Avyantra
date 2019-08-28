@@ -1,0 +1,168 @@
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="mt-160">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h4 class="h4 mb-0 text-gray-800"> <i class="fas fa-fw fa-user text-primary mr-2"></i>Profile</h4>
+    </div>
+  </div>
+
+  <!-- Content Row -->
+  <div class="row">
+{{referralProfile | json}}
+    <div class="col-xl-12 col-md-12 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Personal Information</h6>
+        </div>
+        <div class="card-body"  *ngIf="referralProfile?.length>0">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group has-error has-danger ">
+                    <label for="" class="text-bold text-gray-900">Name:</label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group has-error has-danger ">
+                    <div>{{referralProfile[0]['first_name']}}&nbsp;{{referralProfile[0]['last_name']}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group has-error has-danger ">
+                    <label for="" class="text-bold text-gray-900">Speciality:</label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group has-error has-danger ">
+                    <!-- <div>Neurologist</div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group has-error has-danger ">
+                    <label for="" class="text-bold text-gray-900">Contact Number:</label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group has-error has-danger ">
+                    <div>{{referralProfile[0]['contact_number']}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group has-error has-danger ">
+                    <label for="" class="text-bold text-gray-900">Email:</label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group has-error has-danger ">
+                    <div>{{referralProfile[0]['email_address']}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group has-miterror has-danger ">
+                    <label for="" class="text-bold text-gray-900">Address:</label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group has-error has-danger ">
+                    <div>{{referralProfile[0]['address']}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group has-error has-danger ">
+                    <label for="" class="text-bold text-gray-900">City:</label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group has-error has-danger ">
+                    <div>{{referralProfile[0]['city']}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group has-miterror has-danger ">
+                    <label for="" class="text-bold text-gray-900">State:</label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group has-error has-danger ">
+                    <div>{{referralProfile[0]['state']}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group has-error has-danger ">
+                    <label for="" class="text-bold text-gray-900">Pincode:</label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group has-error has-danger ">
+                    <div>{{referralProfile[0]['pincode']}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group has-error has-danger ">
+                    <label for="" class="text-bold text-gray-900">Change Password:</label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group has-error has-danger ">
+                    <div><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i
+                          class="fas fa-key fa-sm text-white-50"></i> Change Password</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 text-right">
+              <div class="form-group has-error has-danger ">
+                <a href="#" class="d-none d-sm-inline-block btn btn-md btn-secondary shadow-sm">Edit</a>
+                <a href="#" class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm">Save</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

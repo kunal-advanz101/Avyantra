@@ -17,6 +17,7 @@ export class TopNavBarComponent implements OnInit {
   loginHospital:any={};
   hospitalBranchName:string;
   staffUser=["DashboardStaff","MessageCenter","MyProfile"];
+  ReferralUser=["DashboardStaff","MyProfile"];
   branchAdmin=["Dashboard","MedicalRecords","HospitalStaff","Settings","MessageCenter","MyProfile"];
   hospitalAdmin=["Dashboard","MedicalRecords","HospitalStaff","Settings","MessageCenter","MyProfile","AddBranch"];
   ngOnInit() {
@@ -36,6 +37,19 @@ export class TopNavBarComponent implements OnInit {
     this.readingDataService.resetAll();
   }
 
+  changeProfile(){
+    if(this.loginHospital['user_type']==this.constant.staff_type_login){
+      this.router.navigate(["admin/staff-profile"]);
+    }
+    if(this.loginHospital['user_type']==this.constant.hospital_type_login){
+      this.router.navigate(["admin/my-profile"]);
+    }
+    if(this.loginHospital['user_type']==this.constant.branch_type_login){
+      this.router.navigate(["admin/branch-admin-profile"]);
+    }
+    
+  }
+
   activeTab(tabName){
     this.selectedTab=tabName;
   }
@@ -49,6 +63,9 @@ export class TopNavBarComponent implements OnInit {
     }
     if(this.loginHospital['user_type']==this.constant.staff_type_login){
       return this.staffUser.includes(tabName);
+    }
+    if(this.loginHospital['referral_doctor_login']==this.constant.staff_type_login){
+      return this.ReferralUser.includes(tabName);
     }
   }
 

@@ -69,6 +69,9 @@ import { ReferralDoctorStaffComponent } from './referral-doctor-staff/referral-d
 import {passwordPipe} from './shared/pipes/encrypt-password.pipe';
 import { userTypePipe } from './shared/pipes/user-type.pipe';
 import { HospitalStaffDashboardComponent } from './user-dashboards/hospital-staff-dashboard/hospital-staff-dashboard.component';
+import { StaffProfileComponent } from './profile/staff-profile/staff-profile.component';
+import { ReferralProfileComponent } from './profile/referral-profile/referral-profile.component';
+import { BranchAdminProfileComponent } from './profile/branch-admin-profile/branch-admin-profile.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true
 };
@@ -100,7 +103,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SettingsComponent,
     MedicalRecordsComponent,
     ReferralDoctorStaffComponent,
-    MyProfileComponent,passwordPipe,userTypePipe, HospitalStaffDashboardComponent],
+    MyProfileComponent,passwordPipe,userTypePipe, HospitalStaffDashboardComponent, StaffProfileComponent, BranchAdminProfileComponent, ReferralProfileComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,

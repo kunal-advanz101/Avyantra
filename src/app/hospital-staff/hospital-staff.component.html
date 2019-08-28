@@ -557,8 +557,8 @@
 						<div class="form-group has-error has-danger ">
 							<div>
 								<select class="form-control" formControlName="reportTo">
-									<option *ngFor="let list of staffList" [value]="list.staff_id"
-										[selected]="list.staff_id == addStaffForm['value']['reportTo']">
+									<option *ngFor="let list of staffList" [value]="list.user_id"
+										[selected]="list.user_id == addStaffForm['value']['reportTo']">
 										{{list.first_name}}
 										{{list.last_name}}</option>
 								</select>

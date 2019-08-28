@@ -455,8 +455,20 @@ export class CommonService {
     return this.http.get(this.baseUrl + "hospital/hospitalProfile/" + id , this.jwt());
   }
 
+  getStaffProfile(id){
+    return this.http.get(this.baseUrl + "hospitalStaff/staffProfile/" + id , this.jwt());
+  }
+
+  getReferralProfile(id){
+    return this.http.get(this.baseUrl + "hospitalStaff/getReferralProfile/" + id , this.jwt());
+  }
+
   updateHospitalProfile(data,hospitalId){
     return this.http.put(this.baseUrl + "hospital/updateHospitalProfile/" + hospitalId , data,this.jwt());
+  }
+
+  updateStaffProfile(data,staffId){
+    return this.http.put(this.baseUrl + "hospitalStaff/updateStaffProfile/" + staffId , data,this.jwt());
   }
 
   addReferralDoctor(hospitalId,branchId,data){
@@ -475,5 +487,13 @@ export class CommonService {
     return this.http.get(
      this.baseUrl +'hospitalStaff/ReferralDoctorCount/'+hospitalId+'/'+branchId, this.jwt()
     );
+  }
+  getBranchProfileInfo(branchId){
+    return this.http.get(
+      this.baseUrl +'hospitalBranch/hospitalBranchProfile/'+branchId, this.jwt()
+     );
+  }
+  updateBranchProfile(data,branchId){
+    return this.http.put(this.baseUrl + "hospitalBranch/updateHospitalBranchProfile/" + branchId , data,this.jwt());
   }
 }
