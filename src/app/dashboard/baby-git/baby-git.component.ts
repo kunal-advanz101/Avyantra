@@ -63,10 +63,10 @@ export class BabyGitComponent implements OnInit, OnChanges {
     const vim = this;
     if (obj["frequency_of_stools"] == 'NA') {
       vim.isStools = false;
-      vim.setValidators("frequency_of_stools");
+      vim.clearValidators('frequency_of_stools')
     } else {
       vim.isStools = true;
-      vim.clearValidators("frequency_of_stools")
+      vim.setValidators('frequency_of_stools');
     }
     vim.babyGitForm.patchValue({
       study_id: vim.id,
@@ -86,10 +86,10 @@ export class BabyGitComponent implements OnInit, OnChanges {
         vim.isStools = false;
         vim.babyGitForm.patchValue({frequency_of_stools: 'NA'})
         vim.babyGitForm.value["frequency_of_stools"] = 'NA';
-        vim.setValidators("frequency_of_stools");
+        vim.clearValidators('frequency_of_stools');
       } else {
         vim.isStools = true;
-        vim.clearValidators("frequency_of_stools");
+        vim.setValidators('frequency_of_stools');
         vim.babyGitForm.patchValue({ frequency_of_stools: ''})
       }
     }
@@ -239,7 +239,7 @@ export class BabyGitComponent implements OnInit, OnChanges {
   }
   setValidators(filedName){
     this.babyGitForm.controls[filedName].setValidators([Validators.required]);
-    this.babyGitForm.controls[filedName.updateValueAndValidity()];
+    this.babyGitForm.controls[filedName].updateValueAndValidity();
   }
   clearValidators(fieldName){
     this.babyGitForm.controls[fieldName].clearValidators();
