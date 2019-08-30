@@ -24,6 +24,8 @@ import { HospitalStaffDashboardComponent } from './user-dashboards/hospital-staf
 import { StaffProfileComponent } from './profile/staff-profile/staff-profile.component';
 import { ReferralProfileComponent } from './profile/referral-profile/referral-profile.component';
 import { BranchAdminProfileComponent } from './profile/branch-admin-profile/branch-admin-profile.component';
+import { ReferralDoctorComponent } from './user-dashboards/referral-doctor/referral-doctor.component';
+import { HospitalConnectComponent } from './hospital-connect/hospital-connect.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -76,12 +78,17 @@ const routes: Routes = [
       {path:'referral-profile', component:ReferralProfileComponent},
       {path:'branch-admin-profile', component:BranchAdminProfileComponent},
       {path:'referral-doctor', component:ReferralDoctorStaffComponent},
-      {path:'hospital-staff', component:HospitalStaffDashboardComponent}
+      {path:'hospital-staff', component:HospitalStaffDashboardComponent},
+      {path:'referral-doctors', component:ReferralDoctorComponent},
+      {path:'hospital-connect', component:HospitalConnectComponent}
     ],
   },
   {
     path: 'forget_password',
     loadChildren: './forget/forget.module#ForgetModule'
+  },
+  {
+    path: 'referral-signup',loadChildren: './referral-signup/referral-signup.module#RefferalSignupModule'
   },
   {
     path: 'signup',

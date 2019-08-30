@@ -299,12 +299,14 @@ export class GeneralComponent implements OnInit {
       vim.generalForm.value["baby_weight_at_admission"] = 'NA';
       this.chkWeightAtAdmission = false;
 
-      vim.clearValidators('baby_weight_at_admission')
+      vim.generalForm.controls["baby_weight_at_admission"].clearValidators();
+      vim.generalForm.controls["baby_weight_at_admission"].updateValueAndValidity();
       vim.generalForm.patchValue({
         baby_weight_at_admission: 'NA'
       });
     } else {
-     vim.clearValidators('baby_weight_at_admission')
+      vim.generalForm.controls["baby_weight_at_admission"].clearValidators();
+      vim.generalForm.controls["baby_weight_at_admission"].updateValueAndValidity();
       vim.generalForm.patchValue({
         baby_weight_at_admission: ''
       })
@@ -320,13 +322,15 @@ export class GeneralComponent implements OnInit {
       vim.generalForm.value["baby_weight_at_birth"] = 'NA';
       this.chkWeightAtBirth = false;
 
-     vim.clearValidators('baby_weight_at_birth');
+      vim.generalForm.controls["baby_weight_at_birth"].clearValidators();
+      vim.generalForm.controls["baby_weight_at_birth"].updateValueAndValidity();
 
       vim.generalForm.patchValue({
         baby_weight_at_birth: 'NA'
       });
     } else {
-      vim.setValidators('baby_weight_at_birth')
+      vim.generalForm.controls["baby_weight_at_birth"].setValidators([Validators.required]);
+      vim.generalForm.controls["baby_weight_at_birth"].updateValueAndValidity();
       vim.generalForm.patchValue({
         baby_weight_at_birth: ''
       })
@@ -340,7 +344,8 @@ export class GeneralComponent implements OnInit {
 
     if (obj["baby_place_of_birth_pin_code"] == 'NA') {
       vim.chkBabyPlaceBirthPin = false;
-      vim.clearValidators('baby_place_of_birth_pin_code')
+      vim.generalForm.controls["baby_place_of_birth_pin_code"].clearValidators();
+      vim.generalForm.controls["baby_place_of_birth_pin_code"].updateValueAndValidity();
     } else {
       vim.chkBabyPlaceBirthPin = true;
       vim.generalForm.controls["baby_place_of_birth_pin_code"].setValidators([Validators.required, Validators.minLength(6)]);
@@ -415,14 +420,17 @@ export class GeneralComponent implements OnInit {
 
     if (obj['baby_gestational_age'] > 36) {
       vim.pretermArr = ['No', 'NA'];
-      vim.setValidators('baby_preterm')
+      vim.generalForm.controls["baby_preterm"].setValidators([Validators.required]);
+      vim.generalForm.controls["baby_preterm"].updateValueAndValidity();
     } if(obj['baby_gestational_age'] < 37){
       vim.pretermArr = ['Yes', 'NA'];
-      vim.setValidators('baby_preterm')
+      vim.generalForm.controls["baby_preterm"].setValidators([Validators.required]);
+      vim.generalForm.controls["baby_preterm"].updateValueAndValidity();
     } 
     if(obj['baby_gestational_age'] == 'NA') {
       vim.pretermArr = ['Yes', 'No', 'NA'];
-      vim.setValidators('baby_preterm')
+      vim.generalForm.controls["baby_preterm"].setValidators([Validators.required]);
+      vim.generalForm.controls["baby_preterm"].updateValueAndValidity();
     }
       vim.studyId=obj['study_id'];
     vim.generalForm.patchValue({
@@ -492,7 +500,8 @@ export class GeneralComponent implements OnInit {
           baby_place_of_birth_pin_code: 'NA'
         })
         vim.generalForm.value["baby_place_of_birth_pin_code"] = 'NA';
-       vim.clearValidators('baby_place_of_birth_pin_code');
+        vim.generalForm.controls["baby_place_of_birth_pin_code"].clearValidators();
+        vim.generalForm.controls["baby_place_of_birth_pin_code"].updateValueAndValidity();
       } else {
         vim.chkBabyPlaceBirthPin = true;
 
@@ -511,13 +520,15 @@ export class GeneralComponent implements OnInit {
           baby_place_of_birth_name: 'NA'
         })
         vim.generalForm.value["baby_place_of_birth_name"] = 'NA';
-       vim.clearValidators('baby_place_of_birth_name');
+        vim.generalForm.controls["baby_place_of_birth_name"].clearValidators();
+        vim.generalForm.controls["baby_place_of_birth_name"].updateValueAndValidity();
       } else {
         vim.chkBabyPlaceBirthName = true;
         vim.generalForm.patchValue({
           baby_place_of_birth_name: ''
         })
-       vim.setValidators('baby_place_of_birth_name')
+        vim.generalForm.controls["baby_place_of_birth_name"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_place_of_birth_name"].updateValueAndValidity();
       }
     }
 
@@ -547,11 +558,15 @@ export class GeneralComponent implements OnInit {
         vim.generalForm.value["baby_birth_time_hours"] = 'NA';
         vim.generalForm.value["baby_birth_time_minit"] = 'NA';
 
-       vim.clearValidators('baby_birth_time_hours')
-        vim.clearValidators('baby_birth_time_minit')
+        vim.generalForm.controls["baby_birth_time_hours"].clearValidators();
+        vim.generalForm.controls["baby_birth_time_hours"].updateValueAndValidity();
+        vim.generalForm.controls["baby_birth_time_minit"].clearValidators();
+        vim.generalForm.controls["baby_birth_time_minit"].updateValueAndValidity();
       } else {
-       vim.setValidators('baby_birth_time_hours');
-       vim.setValidators('baby_birth_time_minit')
+        vim.generalForm.controls["baby_birth_time_hours"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_birth_time_hours"].updateValueAndValidity();
+        vim.generalForm.controls["baby_birth_time_minit"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_birth_time_minit"].updateValueAndValidity();
         vim.chkBabyTimeOfBirth = true;
         vim.generalForm.patchValue({
           baby_birth_time_hours: ''
@@ -569,13 +584,15 @@ export class GeneralComponent implements OnInit {
           baby_age_of_admission: 'NA'
         })
         vim.generalForm.value["baby_age_of_admission"] = 'NA';
-       vim.clearValidators('baby_age_of_admission')
+        vim.generalForm.controls["baby_age_of_admission"].clearValidators();
+        vim.generalForm.controls["baby_age_of_admission"].updateValueAndValidity();
       } else {
         vim.chkBabyAgeAdmission = true;
         vim.generalForm.patchValue({
           baby_age_of_admission: ''
         })
-       vim.setValidators('baby_age_of_admission')
+        vim.generalForm.controls["baby_age_of_admission"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_age_of_admission"].updateValueAndValidity();
       }
     }
 
@@ -586,13 +603,15 @@ export class GeneralComponent implements OnInit {
           baby_apgar_score_one_min: 'NA'
         })
         vim.generalForm.value["baby_apgar_score_one_min"] = 'NA';
-        vim.clearValidators('baby_apgar_score_one_min')
+        vim.generalForm.controls["baby_apgar_score_one_min"].clearValidators();
+        vim.generalForm.controls["baby_apgar_score_one_min"].updateValueAndValidity();
       } else {
         vim.chkBabyApgarSc1 = true;
         vim.generalForm.patchValue({
           baby_apgar_score_one_min: ''
         })
-        vim.setValidators('baby_apgar_score_one_min')
+        vim.generalForm.controls["baby_apgar_score_one_min"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_apgar_score_one_min"].updateValueAndValidity();
       }
     }
 
@@ -603,13 +622,15 @@ export class GeneralComponent implements OnInit {
           baby_apgar_score_five_min: 'NA'
         })
         vim.generalForm.value["baby_apgar_score_five_min"] = 'NA';
-        vim.clearValidators('baby_apgar_score_five_min')
+        vim.generalForm.controls["baby_apgar_score_five_min"].clearValidators();
+        vim.generalForm.controls["baby_apgar_score_five_min"].updateValueAndValidity();
       } else {
         vim.chkBabyApgarSc5 = true;
         vim.generalForm.patchValue({
           baby_apgar_score_five_min: ''
         })
-        vim.setValidators('baby_apgar_score_five_min')
+        vim.generalForm.controls["baby_apgar_score_five_min"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_apgar_score_five_min"].updateValueAndValidity();
       }
     }
 
@@ -620,13 +641,15 @@ export class GeneralComponent implements OnInit {
           baby_apgar_score_ten_min: 'NA'
         })
         vim.generalForm.value["baby_apgar_score_ten_min"] = 'NA';
-       vim.clearValidators('baby_apgar_score_ten_min');
+        vim.generalForm.controls["baby_apgar_score_ten_min"].clearValidators();
+        vim.generalForm.controls["baby_apgar_score_ten_min"].updateValueAndValidity();
       } else {
         vim.chkBabyApgarSc10 = true;
         vim.generalForm.patchValue({
           baby_apgar_score_ten_min: ''
         })
-       vim.setValidators('baby_apgar_score_ten_min')
+        vim.generalForm.controls["baby_apgar_score_ten_min"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_apgar_score_ten_min"].updateValueAndValidity();
       }
     }
 
@@ -637,17 +660,20 @@ export class GeneralComponent implements OnInit {
           baby_gestational_age: 'NA'
         })
         vim.generalForm.value["baby_gestational_age"] = 'NA';
-       vim.clearValidators('baby_gestational_age')
+        vim.generalForm.controls["baby_gestational_age"].clearValidators();
+        vim.generalForm.controls["baby_gestational_age"].updateValueAndValidity();
 
         this.pretermArr = ['Yes', 'No', 'NA'];
-        vim.setValidators('baby_preterm');
+      this.generalForm.controls["baby_preterm"].setValidators([Validators.required]);
+      this.generalForm.controls["baby_preterm"].updateValueAndValidity();
       // this.generalForm.controls["baby_preterm"].setValue('');
       } else {
         vim.chkBabyGestationalAge = true;
         vim.generalForm.patchValue({
           baby_gestational_age: ''
         })
-       vim.setValidators('baby_gestational_age')
+        vim.generalForm.controls["baby_gestational_age"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_gestational_age"].updateValueAndValidity();
       }
     }
 
@@ -658,13 +684,15 @@ export class GeneralComponent implements OnInit {
           baby_day_of_event: 'NA'
         })
         vim.generalForm.value["baby_day_of_event"] = 'NA';
-        vim.clearValidators('baby_day_of_event')
+        vim.generalForm.controls["baby_day_of_event"].clearValidators();
+        vim.generalForm.controls["baby_day_of_event"].updateValueAndValidity();
       } else {
         vim.chkBabyDayEvent = true;
         vim.generalForm.patchValue({
           baby_day_of_event: ''
         })
-        vim.setValidators('baby_day_of_event')
+        vim.generalForm.controls["baby_day_of_event"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_day_of_event"].updateValueAndValidity();
       }
     }
 
@@ -689,13 +717,15 @@ export class GeneralComponent implements OnInit {
           baby_condition_other_if_suspect: 'NA'
         })
         vim.generalForm.value["baby_condition_other_if_suspect"] = 'NA';
-        vim.clearValidators('baby_condition_other_if_suspect')
+        vim.generalForm.controls["baby_condition_other_if_suspect"].clearValidators();
+        vim.generalForm.controls["baby_condition_other_if_suspect"].updateValueAndValidity();
       } else {
         vim.chkBabyCondOnSuspectOtherIfAny = true;
         vim.generalForm.patchValue({
           baby_condition_other_if_suspect: ''
         })
-        vim.setValidators('baby_condition_other_if_suspect')
+        vim.generalForm.controls["baby_condition_other_if_suspect"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_condition_other_if_suspect"].updateValueAndValidity();
       }
     }
 
@@ -1013,13 +1043,15 @@ export class GeneralComponent implements OnInit {
         });
 
         vim.generalForm.value["baby_weight_at_birth"] = 'NA';
-        vim.clearValidators('baby_weight_at_birth')
+        vim.generalForm.controls["baby_weight_at_birth"].clearValidators();
+        vim.generalForm.controls["baby_weight_at_birth"].updateValueAndValidity();
       } else {
         vim.chkWeightAtBirth = true;
         vim.generalForm.patchValue({
           baby_weight_at_birth: ''
         })
-        vim.setValidators('baby_weight_at_birth')
+        vim.generalForm.controls["baby_weight_at_birth"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_weight_at_birth"].updateValueAndValidity();
       }
     }
 
@@ -1030,13 +1062,16 @@ export class GeneralComponent implements OnInit {
           baby_weight_at_admission: 'NA'
         });
         vim.generalForm.value["baby_weight_at_admission"] = 'NA';
-        vim.clearValidators('baby_weight_at_admission')
+
+        vim.generalForm.controls["baby_weight_at_admission"].clearValidators();
+        vim.generalForm.controls["baby_weight_at_admission"].updateValueAndValidity();
       } else {
         vim.chkWeightAtAdmission = true;
         vim.generalForm.patchValue({
           baby_weight_at_admission: ''
         })
-        vim.setValidators('baby_weight_at_admission');
+        vim.generalForm.controls["baby_weight_at_admission"].setValidators([Validators.required]);
+        vim.generalForm.controls["baby_weight_at_admission"].updateValueAndValidity();
       }
     }
   }
@@ -1126,15 +1161,5 @@ export class GeneralComponent implements OnInit {
           }
         })
     
-  }
-
-  setValidators(fieldName){
-    this.generalForm.controls[fieldName].setValidators([Validators.required]);
-    this.generalForm.controls[fieldName].updateValueAndValidity();
-  }
-
-  clearValidators(fieldName){
-    this.generalForm.controls[fieldName].clearValidators();
-    this.generalForm.controls[fieldName].updateValueAndValidity();
   }
 }

@@ -41,6 +41,8 @@ export class BranchAdminProfileComponent implements OnInit {
       password: ["",[Validators.required,Validators.minLength(6)]],
       branchName: ["",[Validators.required]],
       hospitalBranchId:["",[Validators.required]]
+      // firstName:["",[Validators.required]]
+      // lastName:["",[Validators.required]]
     });
   }
 

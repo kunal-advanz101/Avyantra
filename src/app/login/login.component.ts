@@ -102,6 +102,11 @@ export class LoginComponent implements OnInit {
     vim.router.navigate(["/signup"]);
   }
 
+  referralSignup() {
+    const vim = this;
+    vim.router.navigate(["/referral-signup"]);
+  }
+
   navIgateUser(response){
     if(response['user_type']==this.constant.hospital_type_login || response['user_type']==this.constant.branch_type_login){
       this.router.navigateByUrl("/admin");
@@ -110,7 +115,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl("/admin/hospital-staff");
     }
     if(response['user_type']==this.constant.referral_doctor_login){
-      this.router.navigateByUrl("/admin/referral-doctor");
+      this.router.navigateByUrl("/admin/referral-doctors");
     }
   }
 

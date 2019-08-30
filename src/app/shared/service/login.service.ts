@@ -33,6 +33,10 @@ export class LoginService {
       return this.http.post(this.baseUrl+'hospital/signUp', data, this.jwt());
     }
 
+    referral_signup(data) {
+      return this.http.post(this.baseUrl+'hospitalStaff/registerReferralDoctor', data, this.jwt());
+    }
+
      /**
     * 
     * @param data 
