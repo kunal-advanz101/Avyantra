@@ -110,6 +110,7 @@
         aria-haspopup="true" aria-expanded="false">
         <span  *ngIf="loginHospital['user_type']=='Hospital'" class="mr-2 d-none d-lg-inline text-gray-600 small">{{hospitalName}}</span>
         <span *ngIf="loginHospital['user_type']=='Hospital Branch' || loginHospital['user_type']=='Hospital Staff'" class="mr-2 d-none d-lg-inline text-gray-600 small">{{hospitalBranchName}}</span>
+        <span *ngIf="loginHospital['user_type']=='Referral Doctor'" class="mr-2 d-none d-lg-inline text-gray-600 small">{{referralDoctorName}}</span>
         <span class="btn btn-warning btn-circle btn-sm"><i class="fa fa-hospital text-gray-900 ml-2 mr-2"></i> </span>
         <!--<img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
       </a>
@@ -157,6 +158,9 @@
     <li class="nav-item" [ngClass]="{'active': selectedTab==='dashboard'}" *ngIf="showPermission('DashboardStaff')">
       <a class="nav-link" routerLink="/admin/hospital-staff" (click)="activeTab('dashboard')">Dashboard <span class="sr-only">(current)</span></a>
     </li>
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='dashboardReferra'}" *ngIf="showPermission('DashboardRD')">
+      <a class="nav-link" routerLink="/admin/referral-doctors" (click)="activeTab('dashboardReferral')">Dashboard <span class="sr-only">(current)</span></a>
+    </li>
     <li class="nav-item" [ngClass]="{'active': selectedTab==='addbranch'}" *ngIf="showPermission('AddBranch')">
     <a class="nav-link" routerLink="/admin/addbranch" (click)="activeTab('addbranch')">Add Branch</a>
     </li>
@@ -178,6 +182,9 @@
      <li class="nav-item" [ngClass]="{'active': selectedTab==='settings'}" *ngIf="showPermission('Settings')">
     <a class="nav-link" routerLink="/admin/setting" (click)="activeTab('settings')" >Settings</a>
     </li>
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='hospitalConnect'}" *ngIf="showPermission('hospitalConnect')">
+      <a class="nav-link" routerLink="/admin/hospital-connect" (click)="activeTab('hospitalConnect')" >Hospital Connect</a>
+      </li>
   </ul>
   </div>
   

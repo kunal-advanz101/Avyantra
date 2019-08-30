@@ -16,8 +16,10 @@ export class TopNavBarComponent implements OnInit {
   hospitalName:string;
   loginHospital:any={};
   hospitalBranchName:string;
+  referralDoctorName:string;
+  lastName:string
   staffUser=["DashboardStaff","MessageCenter","MyProfile"];
-  ReferralUser=["DashboardStaff","MyProfile"];
+  ReferralUser=["DashboardRD","MyProfile","hospitalConnect"];
   branchAdmin=["Dashboard","MedicalRecords","HospitalStaff","Settings","MessageCenter","MyProfile"];
   hospitalAdmin=["Dashboard","MedicalRecords","HospitalStaff","Settings","MessageCenter","MyProfile","AddBranch"];
   ngOnInit() {
@@ -25,6 +27,9 @@ export class TopNavBarComponent implements OnInit {
     this.loginHospital=JSON.parse(localStorage.getItem("login_hospital"));
     this.hospitalName=this.loginHospital['hospital_name'];
     this.hospitalBranchName=this.loginHospital['hospital_branch_name'];
+    if(this.loginHospital['user_type']===this.constant.referral_doctor_login){
+      this.referralDoctorName=this.loginHospital['first_name'] + ' '+this.loginHospital['last_name'];
+    }
   }
 
   logout(){
@@ -47,6 +52,9 @@ export class TopNavBarComponent implements OnInit {
     if(this.loginHospital['user_type']==this.constant.branch_type_login){
       this.router.navigate(["admin/branch-admin-profile"]);
     }
+    if(this.loginHospital['user_type']===this.constant.referral_doctor_login){
+      this.router.navigate(["admin/referral-profile"]);
+    }
     
   }
 
@@ -64,7 +72,7 @@ export class TopNavBarComponent implements OnInit {
     if(this.loginHospital['user_type']==this.constant.staff_type_login){
       return this.staffUser.includes(tabName);
     }
-    if(this.loginHospital['referral_doctor_login']==this.constant.staff_type_login){
+    if(this.loginHospital['user_type']==this.constant.referral_doctor_login){
       return this.ReferralUser.includes(tabName);
     }
   }
