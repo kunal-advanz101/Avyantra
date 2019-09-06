@@ -1250,140 +1250,17 @@ export class BabyInvestigationComponent implements OnInit, OnChanges {
       this.invetigationForm.value["thrombocytopenia"] = 'NA';
     }
 
-    // const newUser = vim.common_api.baby_investigation_add(
-    //   vim.invetigationForm.value
-    // );
-    // newUser.subscribe(
-    //   response => {
-    //     vim.reset();
-    //     vim.success(response, "investigationFormSubmit");
-    //     vim.isBabyInvestEdit = false;
-    //   },
-    //   error => {
-    //     console.error("errro", error);
-    //   }
-    // );
     vim.invetigationForm.value["reading"] = localStorage.getItem('reading');
    vim.goToNextReadingForm();
   }
-  /**
-   *
-   * @param response
-   * @param api_type
-   * @method: success
-   * @purpose :-  it is a common helper
-   */
+ 
   success(response, api_type) {
     const vim = this;
-    if (api_type == "investigationFormSubmit") {
-      if (vim.isSuccess(response)) {
-        vim.toastr.success(
-          "",
-          "Information Updated succesfully"
-        );
-        vim.responseArray = [];
-        this.page = 1;
-        vim.dataServiceObj = vim.dataService.getOption();
-        vim.get_investigation(vim.dataServiceObj.study_id, vim.login_hospital['id'], vim.page, vim.readingDataService.reading);
-      } else {
-        if (vim.isAlreadyExist(response)) {
-          vim.toastr.warning("Already Exist!!", response["message"]);
-        } else {
-          vim.errorToasty(response);
-        }
-      }
-    } else if (api_type == "get_investigation") {
-      if (vim.isSuccess(response)) {
-        if (this.page == 1) {
+     if (api_type == "get_investigation") {
           vim.responseArray = [];
           vim.responseArray = response["response"];
           vim.isBabyInvestEdit=false;
-        } else {
-          if (response["status"] == 404) {
-            // vim.responseArray = [];
-          }
-          else if (response["response"].length > 0) {
-            vim.temp_study_id = response["response"][0].study_id;
-            if (vim.temp_study_id == vim.id) {
-            } else {
-              vim.responseArray = [];
-            }
-
-            for (var i = 0; i < response["response"].length; i++) {
-              vim.responseArray.push(response["response"][i]);
-              vim.temp_study_id = vim.id;
-            }
-          }
-        }
         vim.commonAsyn.isHide();
-      } else {
-        vim.responseArray = [];
-        vim.commonAsyn.isHide();
-        if (vim.isAlreadyExist(response)) {
-        } else {
-        }
-      }
-    }
-  }
-
-
-
-  /**
-   *
-   * @param error
-   * @param api_type
-   * @purpose :-  This is error handler method is called.
-   * @method: errorHandler
-   */
-  errorHandler(error, api_type) {
-    const vim = this;
-    if (api_type == "investigationFormSubmit") {
-      vim.errorToasty(error);
-    }
-  }
-
-  /**
-   *
-   * @param response
-   * @method: it is a common herlper for check the status is 200 or not
-   */
-  isSuccess(response) {
-    const vim = this;
-    if (
-      response.hasOwnProperty("status") &&
-      response["status"] === vim.success_status
-    ) {
-      return true;
-    } else if (response["status"] === 404) {
-      return true;
-    }
-    return false;
-  }
-  /**
-   *
-   * @param response
-   * @method :- isAlreadyExist
-   * @purpose :- check if User Already Exist.
-   */
-  isAlreadyExist(response) {
-    const vim = this;
-    if (
-      response.hasOwnProperty("status") &&
-      response["status"] === vim.already_exist_status
-    ) {
-      return true;
-    }
-    return false;
-  }
-  /**
-   * @method :- errorToasty
-   */
-  errorToasty(error) {
-    const vim = this;
-    if (error.hasOwnProperty("message")) {
-      vim.toastr.error("Error!", error["message"]);
-    } else {
-      vim.toastr.error("Error!", "Somethink wrong!!!..");
     }
   }
 
