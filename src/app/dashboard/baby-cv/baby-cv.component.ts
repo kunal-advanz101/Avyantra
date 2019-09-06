@@ -17,35 +17,11 @@ import { ReadingDataService } from '../../shared/service/reading-data.service';
   providers: [NgbModalConfig, NgbModal]
 })
 export class BabyCvComponent implements OnInit {
-
   public customPatterns = { 'S': { pattern: new RegExp('\[a-zA-Z, \]') } };
-
-  babyCvForm: FormGroup;
-  formRef: any;
-  submitted = false;
-  already_exist_status = 422;
-  success_status = 200;
-
-  responseArray = [];
-  page: number = 1;
-  isBabyCvEdit: boolean = true;
-
-  isHeartRate: boolean = true;
-  isBpArterial: boolean = true;
-  isUpperLimb: boolean = true;
-  isLowerLimb: boolean = true;
-  isEchoResult: boolean = true;
-  isEditClicked: boolean = false;
-
-  getMedicalRecordNumber: string;
-
-  @Input() id;
-  @Input() hospital_id;
-  subscription: Subscription;
-
-  temp_study_id = 0;
-  login_hospital: any = {};
-  content:any;
+  babyCvForm: FormGroup; formRef: any; submitted = false; already_exist_status = 422; success_status = 200; responseArray = []; page: number = 1;
+  isBabyCvEdit: boolean = true; isHeartRate: boolean = true; isBpArterial: boolean = true; isUpperLimb: boolean = true; isLowerLimb: boolean = true;
+  isEchoResult: boolean = true; isEditClicked: boolean = false; getMedicalRecordNumber: string; @Input() id; @Input() hospital_id;
+  subscription: Subscription; temp_study_id = 0; login_hospital: any = {};  content:any;
   public dataServiceObj;
   public readingDataObj;
 
@@ -153,7 +129,6 @@ export class BabyCvComponent implements OnInit {
     } else {
       vim.isEchoResult = true;
     }
-
 
     vim.babyCvForm.patchValue({
       study_id: vim.id,
@@ -279,90 +254,41 @@ export class BabyCvComponent implements OnInit {
     }
   }
 
-  // When scroll down the screen  
-  onScroll() {
-    const vim = this;
-    this.page = this.page + 5;
-  }
-
   ngOnChanges() {
     this.createForm(this.id);
   }
   reset() {
     this.createForm(null);
   }
-
   open(content, obj) {
     this.submitted = false;
     if (!_.isEmpty(obj)) {
-      this.isBabyCvEdit = true;
-      this.isEditClicked = true;
+      this.isBabyCvEdit = true; this.isEditClicked = true;
       this.updateForm(obj);
     } else {
-
       this.isBabyCvEdit = true;
       this.createForm(this.id);
     }
   }
 
-  close() {
-  }
-
   babyCVFormSubmit() {
     const vim = this;
     vim.submitted = true;
-    if (vim.babyCvForm.invalid) {
-      return;
-    }
-    // vim.commonAsyn.showLoader();
-
-    if (this.babyCvForm.value["heart_rate"] == '') {
-      this.babyCvForm.value["heart_rate"] = 'NA';
-    }
-    if (this.babyCvForm.value["baby_blood_pressure_mean_arterial_bp"] == '') {
-      this.babyCvForm.value["baby_blood_pressure_mean_arterial_bp"] = 'NA';
-    }
-    if (this.babyCvForm.value["baby_blood_pressure_upper_limb"] == '') {
-      this.babyCvForm.value["baby_blood_pressure_upper_limb"] = 'NA';
-    }
-    if (this.babyCvForm.value["baby_blood_pressure_lower_limb"] == '') {
-      this.babyCvForm.value["baby_blood_pressure_lower_limb"] = 'NA';
-    }
-    if (this.babyCvForm.value["two_d_echo_done_if_yes"] == '') {
-      this.babyCvForm.value["two_d_echo_done_if_yes"] = 'NA';
-    }
-
-    // const newUser = vim.common_api.baby_cv_add(vim.babyCvForm.value);
-    // newUser.subscribe(
-    //   response => {
-    //     vim.reset();
-    //     vim.success(response, "babyCVFormSubmit");
-    //     vim.isBabyCvEdit = false;
-    //   },
-    //   error => {
-    //     console.error("errro", error);
-    //   }
-    // );
+    if (vim.babyCvForm.invalid) { return;}
+    if (this.babyCvForm.value["heart_rate"] == '') { this.babyCvForm.value["heart_rate"] = 'NA';}
+    if (this.babyCvForm.value["baby_blood_pressure_mean_arterial_bp"] == '') { this.babyCvForm.value["baby_blood_pressure_mean_arterial_bp"] = 'NA';}
+    if (this.babyCvForm.value["baby_blood_pressure_upper_limb"] == '') { this.babyCvForm.value["baby_blood_pressure_upper_limb"] = 'NA';}
+    if (this.babyCvForm.value["baby_blood_pressure_lower_limb"] == '') { this.babyCvForm.value["baby_blood_pressure_lower_limb"] = 'NA';}
+    if (this.babyCvForm.value["two_d_echo_done_if_yes"] == '') { this.babyCvForm.value["two_d_echo_done_if_yes"] = 'NA';}
     this.babyCvForm.value["reading"] = localStorage.getItem('reading');
-   vim.goToNextReadingForm();
+    vim.goToNextReadingForm();
   }
-  /**
-   *
-   * @param response
-   * @param api_type
-   * @method: success
-   * @purpose :-  it is a common helper
-   */
 
   success(response, api_type) {
     const vim = this;
     if (api_type == "babyCVFormSubmit") {
       if (vim.isSuccess(response)) {
-
-        vim.toastr.success(
-          "",
-          "Information Updated succesfully"
-        );
+        vim.toastr.success("", "Information Updated succesfully");
         vim.responseArray = [];
         this.page = 1;
         vim.dataServiceObj = vim.dataService.getOption();
@@ -375,23 +301,17 @@ export class BabyCvComponent implements OnInit {
         }
       }
     } else if (api_type == "get_cv") {
-
       if (vim.isSuccess(response)) {
         if (this.page == 1) {
           vim.responseArray = [];
           vim.responseArray = response["response"];
           vim.isBabyCvEdit=false;
-          //vim.isBabyCvEdit=false;
         } else {
-          if (response["status"] == 404) {
-          }
+          if (response["status"] == 404) {}
           else if (response["response"].length > 0) {
             vim.temp_study_id = response["response"][0].study_id;
-            if (vim.temp_study_id == vim.id) {
-            } else {
-              vim.responseArray = [];
-            }
-
+            if (vim.temp_study_id == vim.id) {} 
+            else { vim.responseArray = [];}
             for (var i = 0; i < response["response"].length; i++) {
               vim.responseArray.push(response["response"][i]);
               vim.temp_study_id = vim.id;
@@ -409,90 +329,41 @@ export class BabyCvComponent implements OnInit {
     }
   }
 
-  /**
-   *
-   * @param error
-   * @param api_type
-   * @purpose :-  This is error handler method is called.
-   * @method: errorHandler
-   */
-  errorHandler(error, api_type) {
-    const vim = this;
-    if (api_type == "babyCVFormSubmit") {
-      vim.errorToasty(error);
-    }
-  }
-
-  /**
-   *
-   * @param response
-   * @method: it is a common herlper for check the status is 200 or not
-   */
   isSuccess(response) {
     const vim = this;
-    if (
-      response.hasOwnProperty("status") &&
-      response["status"] === vim.success_status
-    ) {
+    if (response.hasOwnProperty("status") && response["status"] === vim.success_status ) {
       return true;
-    } else if (response["status"] === 404) {
-      return true;
-    }
+    } else if (response["status"] === 404) { return true;}
     return false;
   }
-  /**
-   *
-   * @param response
-   * @method :- isAlreadyExist
-   * @purpose :- check if User Already Exist.
-   */
+
   isAlreadyExist(response) {
     const vim = this;
-    if (
-      response.hasOwnProperty("status") &&
-      response["status"] === vim.already_exist_status
-    ) {
-      return true;
-    }
+    if (response.hasOwnProperty("status") && response["status"] === vim.already_exist_status) { return true;}
     return false;
   }
-  /**
-   * @method :- errorToasty
-   */
+
   errorToasty(error) {
     const vim = this;
-    if (error.hasOwnProperty("message")) {
-      vim.toastr.error("Error!", error["message"]);
-    } else {
-      vim.toastr.error("Error!", "Somethink wrong!!!..");
-    }
+    if (error.hasOwnProperty("message")) { vim.toastr.error("Error!", error["message"]);} 
+    else {vim.toastr.error("Error!", "Somethink wrong!!!..");}
   }
 
   get_cv(id, hospital_id, page, reading) {
     const vim = this;
-    if (vim.temp_study_id == vim.id) {
-    } else {
-      vim.page = 1;
-      vim.temp_study_id = vim.id;
-    }
+    if (vim.temp_study_id == vim.id) {} 
+    else {vim.page = 1; vim.temp_study_id = vim.id;}
     const newdata = vim.common_api.get_tabs("patient/baby_cv", id, hospital_id, vim.page, reading);
-
     newdata.subscribe(
-      response => {
-        vim.success(response, "get_cv");
-      },
-      error => {
-        console.error("errro", error);
-      }
-    );
-  }
+      response => {vim.success(response, "get_cv");},
+      error => { console.error("errro", error);});
+    }
 
   getReadingFormData(formData){
     this.responseArray[0]=formData;
     this.updateForm(this.responseArray[0]);
     this.isBabyCvEdit=true;
   }
-
   saveReadingFormData(formData){
     this.readingDataService.setReadingFormData('baby_cv',formData);
   }
@@ -513,8 +384,7 @@ export class BabyCvComponent implements OnInit {
             this.babyCvForm.value["reading"] = localStorage.getItem('reading');
             this.saveReadingFormData(this.babyCvForm['value']);
           }
-      }
-      else{
+      } else{
         this.readingDataService.setFormValidationStatus('baby_cv',true)
         if(this.readingDataObj!=undefined){
           this.babyCvForm.value["reading"] = localStorage.getItem('reading');
@@ -530,37 +400,22 @@ export class BabyCvComponent implements OnInit {
     if(vim.babyCvForm.invalid) {
       return;
     } else {
-
-      if (this.babyCvForm.value["heart_rate"] == '') {
-        this.babyCvForm.value["heart_rate"] = 'NA';
-      }
-      if (this.babyCvForm.value["baby_blood_pressure_mean_arterial_bp"] == '') {
-        this.babyCvForm.value["baby_blood_pressure_mean_arterial_bp"] = 'NA';
-      }
-      if (this.babyCvForm.value["baby_blood_pressure_upper_limb"] == '') {
-        this.babyCvForm.value["baby_blood_pressure_upper_limb"] = 'NA';
-      }
-      if (this.babyCvForm.value["baby_blood_pressure_lower_limb"] == '') {
-        this.babyCvForm.value["baby_blood_pressure_lower_limb"] = 'NA';
-      }
-      if (this.babyCvForm.value["two_d_echo_done_if_yes"] == '') {
-        this.babyCvForm.value["two_d_echo_done_if_yes"] = 'NA';
-      }
+      if (this.babyCvForm.value["heart_rate"] == '') { this.babyCvForm.value["heart_rate"] = 'NA';}
+      if (this.babyCvForm.value["baby_blood_pressure_mean_arterial_bp"] == '') { this.babyCvForm.value["baby_blood_pressure_mean_arterial_bp"] = 'NA';}
+      if (this.babyCvForm.value["baby_blood_pressure_upper_limb"] == '') { this.babyCvForm.value["baby_blood_pressure_upper_limb"] = 'NA';}
+      if (this.babyCvForm.value["baby_blood_pressure_lower_limb"] == '') { this.babyCvForm.value["baby_blood_pressure_lower_limb"] = 'NA';}
+      if (this.babyCvForm.value["two_d_echo_done_if_yes"] == '') { this.babyCvForm.value["two_d_echo_done_if_yes"] = 'NA';}
 
     vim.common_api.updateFormData('patient/update/baby_cv/', vim.id, vim.readingDataService.reading, vim.babyCvForm.value)
     .subscribe(result => {
       if(result['status'] != 200) {
         vim.toastr.error(result['message']);
       } else {
-        vim.toastr.success(
-          "",
-          "Data Updated Succesfully"
-        );
+        vim.toastr.success("", "Data Updated Succesfully");
         vim.isEditClicked = false;
         vim.get_cv(vim.dataServiceObj.study_id, vim.login_hospital['id'], this.page, vim.readingDataService.reading);
       }
     })
     }
   }
-
 }
