@@ -377,17 +377,7 @@ export class BabyAppearComponent implements OnInit, OnChanges {
     if (this.babyApears.value["baby_weight_at_birth"] == '') {
       this.babyApears.value["baby_weight_at_birth"] = 'NA';
     }
-    // const newUser = vim.common_api.baby_appear_add(vim.babyApears.value);
-    // newUser.subscribe(
-    //   response => {
-    //     vim.reset();
-    //     vim.success(response, "babyApearsFormSubmit");
-    //     vim.isBabyAppearEdit = false;
-    //   },
-    //   error => {
-    //     console.error("errro", error);
-    //   }
-    // );
+   
     this.babyApears.value["reading"] = localStorage.getItem('reading');
     vim.goToNextReadingForm();
   }

@@ -421,29 +421,10 @@ export class AntibioticAdministrationComponent implements OnInit {
       this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_minute"] = 'NA';
     }
 
-    // vim.commonAsyn.showLoader();
-    // const newUser = vim.common_api.antibiotic_add(
-    //   vim.antibioticAdministrationForm.value
-    // );
-    // newUser.subscribe(
-    //   response => {
-    //     vim.reset();
-    //     vim.success(response, "antibioticFormSubmit");
-    //   },
-    //   error => {
-    //     console.error("errro", error);
-    //   }
-    // );
     this.antibioticAdministrationForm.value["reading"] = localStorage.getItem('reading');
    vim.goToNextReadingForm();
   }
-  /**
-   *
-   * @param response
-   * @param api_type
-   * @method: success
-   * @purpose :-  it is a common helper
-   */
+ 
   success(response, api_type) {
     const vim = this;
     if (api_type == "antibioticFormSubmit") {

@@ -19,55 +19,17 @@ import { ReadingDataService } from '../../shared/service/reading-data.service';
   providers: [NgbModalConfig, NgbModal, DatePipe]
 })
 export class FinalComponent implements OnInit {
-  babyFinalForm: FormGroup;
-  formRef: any;
-  submitted = false;
-  already_exist_status = 422;
-  success_status = 200;
-  isFinalEdit = true;
-  responseArray = [];
-  page: number = 1;
-  chkBabyDischargeDate: boolean = true;
-  chkDaysOfStayHospital: boolean = true;
-  ifFinalDiagnosisOther: boolean = true;
-  isEditClicked: boolean = false;
-  invalidForm=false;
-  readingData;
-  allFormData:any;
-  messageString:string;
+  babyFinalForm: FormGroup; formRef: any; submitted = false; already_exist_status = 422; success_status = 200; isFinalEdit = true; responseArray = [];
+  page: number = 1; chkBabyDischargeDate: boolean = true; chkDaysOfStayHospital: boolean = true; ifFinalDiagnosisOther: boolean = true;
+  isEditClicked: boolean = false; invalidForm=false; readingData; allFormData:any; messageString:string;
   @Input() id;
   @Input() hospital_id;
-
-  getDOA: string;
-
-  temp_study_id = 0;
-  subscription: Subscription;
-  subscriptionForMR: Subscription;
-
-  getMedicalRecordNumber: string;
-  login_hospital: any = {};
-  content:any;
-  public dataServiceObj;
-  public readingDataObj;
+  getDOA: string; temp_study_id = 0; subscription: Subscription; subscriptionForMR: Subscription; getMedicalRecordNumber: string; login_hospital: any = {};
+  content:any; public dataServiceObj; public readingDataObj;
   @ViewChild('saveReadingContent') saveReadingContent;
-
   public customPatterns = { 'S': { pattern: new RegExp('\[a-zA-Z,/\]') } };
-  
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private toastr: ToastrService,
-    private common_api: CommonService,
-    private modalService: NgbModal,
-    private commonAsyn: Common,
-    private datePipe: DatePipe,
-    private dataService: DataService,
-    public readingDataService:ReadingDataService
-    
-  ) {
-    this.dataServiceObj = dataService.getOption();
-  }
-
+  constructor( private formBuilder: FormBuilder, private router: Router,private toastr: ToastrService,private common_api: CommonService,private modalService: NgbModal,private commonAsyn: Common, private datePipe: DatePipe,private dataService: DataService,public readingDataService:ReadingDataService) {
+    this.dataServiceObj = dataService.getOption();}
   transformDate(date) {
     if (Object.prototype.toString.call(date['baby_discharge_date']) === "[object Date]") {
       date['baby_discharge_date'] = this.datePipe.transform(date['baby_discharge_date'], 'dd/MM/yyyy');
@@ -87,12 +49,10 @@ export class FinalComponent implements OnInit {
   }
   else{
     if ( vim.dataServiceObj.study_id != undefined) {
-      //console.log(vim.dataServiceObj)
       this.getDOA = vim.dataServiceObj.baby_date_of_admission
       vim.getMedicalRecordNumber=vim.dataServiceObj.baby_medical_record_number;
       vim.get_final(vim.dataServiceObj.study_id, vim.login_hospital['id'], vim.page, vim.readingDataService.reading);
     }
-
 }
     vim.temp_study_id = vim.id;
     vim.onChanges();
@@ -100,10 +60,8 @@ export class FinalComponent implements OnInit {
 
   createForm(id) {
     const vim = this;
-
     vim.chkBabyDischargeDate = true;
     vim.chkDaysOfStayHospital = true;
-
     this.babyFinalForm = this.formBuilder.group({
       study_id: id,
       days_of_stay_in_hospital: ["", Validators.required],
@@ -119,10 +77,7 @@ export class FinalComponent implements OnInit {
       final_diagnosis_hypoglycemia: ["", Validators.required],
       final_diagnosis_hypocalcemia: ["", Validators.required],
       final_diagnosis_gastroenteritis: ["", Validators.required],
-      final_diagnosis_perinatal_respiratory_depression: [
-        "",
-        Validators.required
-      ],
+      final_diagnosis_perinatal_respiratory_depression: ["",Validators.required],
       final_diagnosis_shock: ["", Validators.required],
       final_diagnosis_feeding_intolerence: ["", Validators.required],
       baby_discharge_date: ["", Validators.required],
@@ -137,10 +92,8 @@ export class FinalComponent implements OnInit {
     if (obj["baby_discharge_date"] == 'NA') {
       vim.chkBabyDischargeDate = false;
     } else {
-
       vim.chkBabyDischargeDate = true;
     }
-
     if (obj["days_of_stay_in_hospital"] == 'NA') {
       vim.chkDaysOfStayHospital = false;
       vim.babyFinalForm.controls["days_of_stay_in_hospital"].clearValidators();
@@ -150,13 +103,11 @@ export class FinalComponent implements OnInit {
       vim.babyFinalForm.controls["days_of_stay_in_hospital"].setValidators([Validators.required]);
       vim.babyFinalForm.controls["days_of_stay_in_hospital"].updateValueAndValidity();
     }
-
     if (obj["final_diagnosis_other"] == 'NA') {
       vim.ifFinalDiagnosisOther = false;
     } else {
       vim.ifFinalDiagnosisOther = true;
     }
-
     vim.babyFinalForm.patchValue({
       study_id: vim.id,
       days_of_stay_in_hospital: obj["days_of_stay_in_hospital"],
@@ -172,11 +123,9 @@ export class FinalComponent implements OnInit {
       final_diagnosis_hypoglycemia: obj["final_diagnosis_hypoglycemia"],
       final_diagnosis_hypocalcemia: obj["final_diagnosis_hypocalcemia"],
       final_diagnosis_gastroenteritis: obj["final_diagnosis_gastroenteritis"],
-      final_diagnosis_perinatal_respiratory_depression:
-        obj["final_diagnosis_perinatal_respiratory_depression"],
+      final_diagnosis_perinatal_respiratory_depression: obj["final_diagnosis_perinatal_respiratory_depression"],
       final_diagnosis_shock: obj["final_diagnosis_shock"],
-      final_diagnosis_feeding_intolerence:
-        obj["final_diagnosis_feeding_intolerence"],
+      final_diagnosis_feeding_intolerence:obj["final_diagnosis_feeding_intolerence"],
       baby_discharge_date: obj["baby_discharge_date"],
       final_diagnosis_sga: obj["final_diagnosis_sga"],
       final_diagnosis_eos_los: obj["final_diagnosis_eos_los"],
@@ -187,24 +136,18 @@ export class FinalComponent implements OnInit {
   calculateDate() {
     var getDischargeDate = this.babyFinalForm.controls["baby_discharge_date"].value;
     var discharge_date = (getDischargeDate.getMonth() + 1) + '/' + getDischargeDate.getDate() + '/' + getDischargeDate.getFullYear();
-
     var chunks = this.getDOA.split('/');
     var formattedDate = [chunks[1], chunks[0], chunks[2]].join("/");
     var milliseconds = Date.parse(formattedDate);
     var milliseconds1 = Date.parse(discharge_date);
-
     var result = milliseconds1 - milliseconds;
-
     result = result / (24 * 60 * 60 * 1000);
-    this.babyFinalForm.patchValue({
-      days_of_stay_in_hospital: result
-    })
+    this.babyFinalForm.patchValue({days_of_stay_in_hospital: result})
   }
 
   onInputChange(event) {
     var vim = this;
     var target = event.target || event.srcElement || event.currentTarget;
-
     if (target.name == 'babyDischargeDate') {
       if (target.value == '2') {
         vim.chkBabyDischargeDate = false;
@@ -218,7 +161,6 @@ export class FinalComponent implements OnInit {
         })
       }
     }
-
     if (target.name == 'daysOfStayHospital') {
       if (target.value == '2') {
         vim.chkDaysOfStayHospital = false;
@@ -226,46 +168,35 @@ export class FinalComponent implements OnInit {
           days_of_stay_in_hospital: 'NA'
         })
         vim.babyFinalForm.value["days_of_stay_in_hospital"] = 'NA';
-
         vim.babyFinalForm.controls["days_of_stay_in_hospital"].clearValidators();
         vim.babyFinalForm.controls["days_of_stay_in_hospital"].updateValueAndValidity();
       } else {
         vim.chkDaysOfStayHospital = true;
         vim.babyFinalForm.controls["days_of_stay_in_hospital"].setValidators([Validators.required]);
         vim.babyFinalForm.controls["days_of_stay_in_hospital"].updateValueAndValidity();
-        vim.babyFinalForm.patchValue({
-          days_of_stay_in_hospital: ''
-        })
+        vim.babyFinalForm.patchValue({  days_of_stay_in_hospital: ''})
       }
     }
 
     if (target.name == 'FinalDiagnosisOther') {
       if (target.value == '2') {
         vim.ifFinalDiagnosisOther = false;
-        vim.babyFinalForm.patchValue({
-          final_diagnosis_other: 'NA'
-        })
+        vim.babyFinalForm.patchValue({ final_diagnosis_other: 'NA' })
         vim.babyFinalForm.value["final_diagnosis_other"] = 'NA';
-
         vim.babyFinalForm.controls["final_diagnosis_other"].clearValidators();
         vim.babyFinalForm.controls["final_diagnosis_other"].updateValueAndValidity();
       } else {
         vim.ifFinalDiagnosisOther = true;
         vim.babyFinalForm.controls["final_diagnosis_other"].setValidators([Validators.required]);
         vim.babyFinalForm.controls["final_diagnosis_other"].updateValueAndValidity();
-        vim.babyFinalForm.patchValue({
-          final_diagnosis_other: ''
-        })
+        vim.babyFinalForm.patchValue({ final_diagnosis_other: ''})
       }
     }
   }
 
-  ngOnChanges() {
-    this.createForm(this.id);
-  }
-  reset() {
-    this.createForm(null);
-  }
+  ngOnChanges() {  this.createForm(this.id);}
+
+  reset() {this.createForm(null);}
 
   open(content, obj) {
     this.submitted = false;
@@ -283,82 +214,27 @@ export class FinalComponent implements OnInit {
     const vim = this;
     vim.transformDate(vim.babyFinalForm.value);
     vim.submitted = true;
-    if (vim.babyFinalForm.invalid) {
-      return;
-    }
-
+    if (vim.babyFinalForm.invalid) { return; }
     if (this.babyFinalForm.value["days_of_stay_in_hospital"] == '') {
       this.babyFinalForm.value["days_of_stay_in_hospital"] = 'NA';
     }
-
     if (this.babyFinalForm.value["final_diagnosis_other"] == '') {
       this.babyFinalForm.value["final_diagnosis_other"] = 'NA';
     }
-
-    //vim.commonAsyn.showLoader();
     vim.babyFinalForm.value["tab_name"] = "genral";
-    // const newUser = vim.common_api.final_add(vim.babyFinalForm.value);
-    // newUser.subscribe(
-    //   response => {
-    //     vim.reset();
-    //     vim.success(response, "finalFormSubmit");
-    //   },
-    //   error => {
-    //     console.error("errro", error);
-    //   }
-    // );
     vim.babyFinalForm.value["reading"] = localStorage.getItem('reading');
     vim.saveReadingFormData(vim.babyFinalForm['value']);
-    //vim.readingDataService.showSaveReadingButton=false;
     vim.openModal();
   }
-  /**
-   *
-   * @param response
-   * @param api_type
-   * @method: success
-   * @purpose :-  it is a common helper
-   */
   success(response, api_type) {
     const vim = this;
-    if (api_type == "finalFormSubmit") {
-      if (vim.isSuccess(response)) {
-        vim.toastr.success(
-          "",
-          "Information Updated succesfully"
-        );
-        vim.responseArray = [];
-        this.page = 1;
-        vim.dataServiceObj = vim.dataService.getOption();
-        vim.get_final(vim.dataServiceObj.study_id, vim.login_hospital['id'], vim.page, vim.readingDataService.reading);
-      } else {
-        if (vim.isAlreadyExist(response)) {
-          vim.toastr.warning("Already Exist!!", response["message"]);
-        } else {
-          vim.errorToasty(response);
-        }
-      }
-    } else if (api_type == "get_final") {
+   if (api_type == "get_final") {
       if (vim.isSuccess(response)) {
         if (this.page == 1) {
           vim.responseArray = [];
           vim.responseArray = response["response"];
           vim.isFinalEdit=false;
         } else {
-          if (response["status"] == 404) {
-          }
-          else if (response["response"].length > 0) {
-            vim.temp_study_id = response["response"][0].study_id;
-            if (vim.temp_study_id == vim.id) {
-            } else {
-              vim.responseArray = [];
-            }
-
-            for (var i = 0; i < response["response"].length; i++) {
-              vim.responseArray.push(response["response"][i]);
-              vim.temp_study_id = vim.id;
-            }
-          }
         }
         vim.commonAsyn.isHide();
       } else {
@@ -371,13 +247,6 @@ export class FinalComponent implements OnInit {
     }
   }
 
-  /**
-   *
-   * @param error
-   * @param api_type
-   * @purpose :-  This is error handler method is called.
-   * @method: errorHandler
-   */
   errorHandler(error, api_type) {
     const vim = this;
     if (api_type == "finalFormSubmit") {
@@ -385,11 +254,6 @@ export class FinalComponent implements OnInit {
     }
   }
 
-  /**
-   *
-   * @param response
-   * @method: it is a common herlper for check the status is 200 or not
-   */
   isSuccess(response) {
     const vim = this;
     if (
@@ -402,12 +266,7 @@ export class FinalComponent implements OnInit {
     }
     return false;
   }
-  /**
-   *
-   * @param response
-   * @method :- isAlreadyExist
-   * @purpose :- check if User Already Exist.
-   */
+
   isAlreadyExist(response) {
     const vim = this;
     if (
@@ -418,9 +277,7 @@ export class FinalComponent implements OnInit {
     }
     return false;
   }
-  /**
-   * @method :- errorToasty
-   */
+
   errorToasty(error) {
     const vim = this;
     if (error.hasOwnProperty("message")) {
@@ -439,14 +296,11 @@ export class FinalComponent implements OnInit {
       vim.temp_study_id = vim.id;
     }
     const newdata = vim.common_api.get_tabs("patient/baby_final", id, hospital_id, page, reading);
-    newdata.subscribe(
-      response => {
+    newdata.subscribe(response => {
         vim.success(response, "get_final");
         this.isFinalEdit = false;
       },
-      error => {
-        console.error("errro", error);
-      }
+      error => {  console.error("errro", error); }
     );
   }
   getReadingFormData(formData){
@@ -485,24 +339,18 @@ export class FinalComponent implements OnInit {
     if(vim.babyFinalForm.invalid) {
       return;
     } else {
-
       if (this.babyFinalForm.value["days_of_stay_in_hospital"] == '') {
         this.babyFinalForm.value["days_of_stay_in_hospital"] = 'NA';
       }
-  
       if (this.babyFinalForm.value["final_diagnosis_other"] == '') {
         this.babyFinalForm.value["final_diagnosis_other"] = 'NA';
       }
-      
     vim.common_api.updateFormData('patient/update/baby_final/', vim.id, vim.readingDataService.reading, vim.babyFinalForm.value)
     .subscribe(result => {
       if(result['status'] != 200) {
         vim.toastr.error(result['message']);
       } else {
-        vim.toastr.success(
-          "",
-          "Data Updated Succesfully"
-        );
+        vim.toastr.success( "", "Data Updated Succesfully" );
         vim.isEditClicked = false;
         vim.get_final(vim.dataServiceObj.study_id, vim.login_hospital['id'], this.page, vim.readingDataService.reading);
       }
@@ -512,11 +360,9 @@ export class FinalComponent implements OnInit {
     openModal() {
     this.formRef = this.modalService.open(this.saveReadingContent, { size: "sm" });
   }
-
   close() {
     this.formRef.close();
   }
-
   saveReading(){
     var vim = this;
     if(vim.validateAllFormData()){
@@ -533,16 +379,12 @@ export class FinalComponent implements OnInit {
              this.commonAsyn.isHide();
            vim.toastr.success('',response['message']);
            vim.readingDataService.clearReadingFormData();
-          //  vim.readingDataService.reset();
           this.readingDataService.showSaveReadingButton=true;
           vim.readingDataService.setActiveTab("baby-profile")
            vim.router.navigate(['dashboard/baby-appearence']);
           }
           },
-          error => {
-            console.error("errro", error);
-          }
-        );
+          error => { console.error("errro", error); });
     }
   }
   validateAllFormData(){
@@ -592,9 +434,6 @@ export class FinalComponent implements OnInit {
     if(this.messageString!==''){
           this.messageString=this.messageString+', '+formName;
     }
-    else{
-        this.messageString=formName;
-    }
+    else{  this.messageString=formName;}
  }
-
 }

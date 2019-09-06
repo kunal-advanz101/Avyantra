@@ -325,18 +325,18 @@ export class BabyRespComponent implements OnInit, OnChanges {
         }else{
           if(response["status"]==404){
           }
-          else if(response["response"].length>0){
-            vim.temp_study_id = response["response"][0].study_id;
-            if(vim.temp_study_id==vim.id){
-            }else{
-              vim.responseArray = [];
-            }
+          // else if(response["response"].length>0){
+          //   vim.temp_study_id = response["response"][0].study_id;
+          //   if(vim.temp_study_id==vim.id){
+          //   }else{
+          //     vim.responseArray = [];
+          //   }
 
-            for(var i=0; i<response["response"].length;i++) {
-              vim.responseArray.push(response["response"][i]);
-              vim.temp_study_id = vim.id;
-            }
-          }
+          //   for(var i=0; i<response["response"].length;i++) {
+          //     vim.responseArray.push(response["response"][i]);
+          //     vim.temp_study_id = vim.id;
+          //   }
+          // }
         }
         vim.commonAsyn.isHide();
       } else {
