@@ -52,6 +52,15 @@ export class AppHelper {
       }
    }
 
+   getLoggedInUser(){
+       return JSON.parse(localStorage.getItem("login_hospital"));
+   }
+
+   getLoggedInUserData(fieldName){
+       let data=JSON.parse(localStorage.getItem("login_hospital"));
+       return data[fieldName];
+   }
+
 
 
  }

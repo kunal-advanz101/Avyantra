@@ -26,7 +26,7 @@ export class HospitalConnectComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.login_user = JSON.parse(localStorage.getItem("login_hospital"));
+    this.login_user = this.helper.getLoggedInUser();
     this.referralDoctorId=this.login_user['referral_id'];
   }
   gethospitalList(){

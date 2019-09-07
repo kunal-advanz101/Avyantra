@@ -93,7 +93,7 @@ export class HospitalBranchComponent implements OnInit {
   }
 
   getLoggedInUserInfo(){
-    this.login_hospital = JSON.parse(localStorage.getItem("login_hospital"));
+    this.login_hospital = this.helper.getLoggedInUser();
     this.hospitalId=this.login_hospital['id'];
   }
 

@@ -261,10 +261,7 @@ export class BabyRespComponent implements OnInit, OnChanges {
     vim.submitted = true;
     if (vim.babyRespForm.invalid) { return;}
 
-    vim.babyRespForm.value["baby_respiratory_support"] = JSON.stringify(vim.selectedRespItems);
-    if (this.babyRespForm.value["oxygen_saturation"] == '') { this.babyRespForm.value["oxygen_saturation"] = 'NA';}
-    else { this.babyRespForm.value["oxygen_saturation"] = this.babyRespForm.value["oxygen_saturation"].toString();}
-    if (this.babyRespForm.value["breathing_rate"] == '') { this.babyRespForm.value["breathing_rate"] = 'NA';}
+    this.setData();
     vim.babyRespForm.value["tab_name"] = "baby_resp_add";
     this.babyRespForm.value["reading"] = localStorage.getItem('reading');
     vim.goToNextReadingForm();
@@ -360,16 +357,7 @@ export class BabyRespComponent implements OnInit, OnChanges {
       return;
     }
     else {
-      this.babyRespForm.value["baby_respiratory_support"] = JSON.stringify(this.selectedRespItems);
-
-      if (this.babyRespForm.value["oxygen_saturation"] == '') {
-        this.babyRespForm.value["oxygen_saturation"] = 'NA';
-      } else {
-        this.babyRespForm.value["oxygen_saturation"] = this.babyRespForm.value["oxygen_saturation"].toString();
-      }
-      if (this.babyRespForm.value["breathing_rate"] == '') {
-        this.babyRespForm.value["breathing_rate"] = 'NA';
-      }
+     this.setData();
       this.common_api.updateFormData('patient/update/baby_resp/', this.id, this.readingDataService.reading, this.babyRespForm['value']).subscribe(result => {
         if (result['status'] != 200) {
           this.toastr.error('Error', 'Some error occured.Please check');
@@ -378,6 +366,18 @@ export class BabyRespComponent implements OnInit, OnChanges {
           this.updateSuccessResponse(result);
         }
       })
+    }
+  }
+  setData(){
+    this.babyRespForm.value["baby_respiratory_support"] = JSON.stringify(this.selectedRespItems);
+
+    if (this.babyRespForm.value["oxygen_saturation"] == '') {
+      this.babyRespForm.value["oxygen_saturation"] = 'NA';
+    } else {
+      this.babyRespForm.value["oxygen_saturation"] = this.babyRespForm.value["oxygen_saturation"].toString();
+    }
+    if (this.babyRespForm.value["breathing_rate"] == '') {
+      this.babyRespForm.value["breathing_rate"] = 'NA';
     }
   }
 
