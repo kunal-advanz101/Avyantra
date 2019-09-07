@@ -529,20 +529,20 @@ export class AntibioticAdministrationComponent implements OnInit {
   onChanges(): void {
     this.antibioticAdministrationForm.statusChanges.subscribe(val => {
       if(val==='INVALID'){
-        this.readingDataService.setFormValidationStatus('baby_antibiotic',false)
-          if(this.readingDataObj!=undefined){
-            this.saveReadingFormData(this.antibioticAdministrationForm['value']);
-          }
+          this.setFormValidationAndValue('baby_antibiotic',false);
       }
       else{
-        this.readingDataService.setFormValidationStatus('baby_antibiotic',true)
-        if(this.readingDataObj!=undefined){
-          this.saveReadingFormData(this.antibioticAdministrationForm['value']);
-        }
+        this.setFormValidationAndValue('baby_antibiotic',true);
       }
     });
   }
 
+  setFormValidationAndValue(name,flag){
+    this.readingDataService.setFormValidationStatus(name,flag)
+    if(this.readingDataObj!=undefined){
+      this.saveReadingFormData(this.antibioticAdministrationForm['value']);
+    }
+  }
 
   updateAntibioticForm(){
    this.setData();
