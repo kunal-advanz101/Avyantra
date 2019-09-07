@@ -393,88 +393,29 @@ export class AntibioticAdministrationComponent implements OnInit {
 
   antibioticFormSubmit() {
     const vim = this;
-    vim.transformDate(vim.antibioticAdministrationForm.value);
     vim.submitted = true;
     if (vim.antibioticAdministrationForm.invalid) {
       return;
     }
-
-    if (vim.antibioticAdministrationForm.controls["antibiotic_name"].value == 'NA') {
-      vim.antibioticAdministrationForm.value["antibiotic_name"] = 'NA';
-    } else {
-      vim.antibioticAdministrationForm.value["antibiotic_name"] = JSON.stringify(vim.selectedItems);
-    }
-
-    if (this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_hours"] == '') {
-      this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_hours"] = 'NA';
-    }
-
-    if (this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_minute"] == '') {
-      this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_minute"] = 'NA';
-    }
-
-    if (this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_hours"] == '') {
-      this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_hours"] = 'NA';
-    }
-
-    if (this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_minute"] == '') {
-      this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_minute"] = 'NA';
-    }
-
     this.antibioticAdministrationForm.value["reading"] = localStorage.getItem('reading');
+   this.setData()
    vim.goToNextReadingForm();
   }
  
   success(response, api_type) {
     const vim = this;
-    if (api_type == "antibioticFormSubmit") {
-      if (vim.isSuccess(response)) {
-        vim.toastr.success(
-          "",
-          "Information Updated succesfully"
-        );
-        vim.responseArray = [];
-        this.page = 1;
-        vim.dataServiceObj = vim.dataService.getOption();
-        vim.get_antibiotic(vim.dataServiceObj.study_id, vim.login_hospital['id'], vim.page, vim.readingDataService.reading);
-      } else {
-        if (vim.isAlreadyExist(response)) {
-          vim.toastr.warning("Already Exist!!", response["message"]);
-        } else {
-          vim.errorToasty(response);
-        }
-      }
-    } else if (api_type == "get_antibiotic") {
+    if (api_type == "get_antibiotic") {
       if (vim.isSuccess(response)) {
         if (this.page == 1) {
           vim.responseArray = [];
           vim.responseArray = response["response"];
-        } else {
-          if (response["status"] == 404) {
-            // vim.responseArray = [];
-          }
-          else if (response["response"].length > 0) {
-            vim.temp_study_id = response["response"][0].study_id;
-            if (vim.temp_study_id == vim.id) {
-            } else {
-              vim.responseArray = [];
-            }
-
-            for (var i = 0; i < response["response"].length; i++) {
-              vim.responseArray.push(response["response"][i]);
-              vim.temp_study_id = vim.id;
-            }
-          }
-        }
+        } 
         vim.commonAsyn.isHide();
       } else {
         vim.responseArray = [];
         vim.commonAsyn.isHide();
         if (vim.isAlreadyExist(response)) {
-          // vim.toastr.warning('Already Exist!!', response['message']);
-        } else {
-          // vim.errorToasty(response);
-        }
+        } else {  }
       }
     }
   }
@@ -604,28 +545,7 @@ export class AntibioticAdministrationComponent implements OnInit {
 
 
   updateAntibioticForm(){
-    this.transformDate(this.antibioticAdministrationForm.value);
-    if (this.antibioticAdministrationForm.controls["antibiotic_name"].value == 'NA') {
-      this.antibioticAdministrationForm.value["antibiotic_name"] = 'NA';
-    } else {
-      this.antibioticAdministrationForm.value["antibiotic_name"] = JSON.stringify(this.selectedItems);
-    }
-
-    if (this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_hours"] == '') {
-      this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_hours"] = 'NA';
-    }
-
-    if (this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_minute"] == '') {
-      this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_minute"] = 'NA';
-    }
-
-    if (this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_hours"] == '') {
-      this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_hours"] = 'NA';
-    }
-
-    if (this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_minute"] == '') {
-      this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_minute"] = 'NA';
-    }
+   this.setData();
     if(!this.antibioticAdministrationForm.valid){
       return ;
     }
@@ -646,5 +566,31 @@ export class AntibioticAdministrationComponent implements OnInit {
     this.get_antibiotic(this.dataServiceObj.study_id, this.login_hospital['id'], this.page, this.readingDataService.reading);
     this.isEditClicked=false;
   //  this.saveReadingFormData(undefined);
+  }
+
+  setData(){
+    let vim=this;
+    vim.transformDate(vim.antibioticAdministrationForm.value);
+    if (vim.antibioticAdministrationForm.controls["antibiotic_name"].value == 'NA') {
+      vim.antibioticAdministrationForm.value["antibiotic_name"] = 'NA';
+    } else {
+      vim.antibioticAdministrationForm.value["antibiotic_name"] = JSON.stringify(vim.selectedItems);
+    }
+
+    if (this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_hours"] == '') {
+      this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_hours"] = 'NA';
+    }
+
+    if (this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_minute"] == '') {
+      this.antibioticAdministrationForm.value["time_of_administration_of_antiobiotic_minute"] = 'NA';
+    }
+
+    if (this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_hours"] == '') {
+      this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_hours"] = 'NA';
+    }
+
+    if (this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_minute"] == '') {
+      this.antibioticAdministrationForm.value["time_of_blood_samples_sent_for_culture_test_minute"] = 'NA';
+    }
   }
 }
