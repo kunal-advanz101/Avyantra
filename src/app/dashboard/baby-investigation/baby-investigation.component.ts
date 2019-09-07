@@ -1066,8 +1066,6 @@ export class BabyInvestigationComponent implements OnInit, OnChanges {
   }
 
   onItemSelect(item: any, id) {
-    console.log(item, id);
-    console.log(item.itemName);
     if (item.itemName == 'Others' && id == 'id_gram_positive_bacteria') {
       this.isPositiveBactFreeField = true;
       this.invetigationForm.controls["gram_positive_bacteria_if_other"].setValidators([Validators.required]);
@@ -1160,161 +1158,19 @@ export class BabyInvestigationComponent implements OnInit, OnChanges {
     if (vim.invetigationForm.invalid) {
       return;
     }
-  //  vim.commonAsyn.showLoader();
-
-    vim.invetigationForm.value["tab_name"] = "final";
-
-    if (vim.invetigationForm.controls["antibiotic_status_value"].value == 'NA') {
-      vim.invetigationForm.value["antibiotic_status_value"] = 'NA';
-    } else {
-      vim.invetigationForm.value["antibiotic_status_value"] = JSON.stringify(vim.selectedItems);
-    }
-
-    if (vim.invetigationForm.controls["antibiotic_status_resisitant"].value == 'NA') {
-      vim.invetigationForm.value["antibiotic_status_resisitant"] = 'NA';
-    } else {
-      vim.invetigationForm.value["antibiotic_status_resisitant"] = JSON.stringify(vim.selectedResisitantItems);
-    }
-
-    if (vim.invetigationForm.controls["antibiotic_status_intermediate"].value == 'NA') {
-      vim.invetigationForm.value["antibiotic_status_intermediate"] = 'NA';
-    } else {
-      vim.invetigationForm.value["antibiotic_status_intermediate"] = JSON.stringify(vim.selectedIntermediateItems);
-    }
-
-    vim.invetigationForm.value["gram_positive_bacteria"] = JSON.stringify(vim.selectedGramPosBacteria);
-    vim.invetigationForm.value["gram_negative_bacteria"] = JSON.stringify(vim.selectedGramNegBacItems);
-    vim.invetigationForm.value["fungi"] = JSON.stringify(vim.selectedFungiItem);
-
-    if (this.invetigationForm.value["baby_thyroid_result"] == '') {
-      this.invetigationForm.value["baby_thyroid_result"] = 'NA';
-    }
-    if (this.invetigationForm.value["baby_blood_glucose"] == '') {
-      this.invetigationForm.value["baby_blood_glucose"] = 'NA';
-    }
-    if (this.invetigationForm.value["baby_haemoglobin_levels"] == '') {
-      this.invetigationForm.value["baby_haemoglobin_levels"] = 'NA';
-    }
-    if (this.invetigationForm.value["baby_c_reactive_protien_levels"] == '') {
-      this.invetigationForm.value["baby_c_reactive_protien_levels"] = 'NA';
-    }
-    if (this.invetigationForm.value["micro_esr"] == '') {
-      this.invetigationForm.value["micro_esr"] = 'NA';
-    }
-    if (this.invetigationForm.value["baby_procalcitonin_levels"] == '') {
-      this.invetigationForm.value["baby_procalcitonin_levels"] = 'NA';
-    }
-    if (this.invetigationForm.value["sodium"] == '') {
-      this.invetigationForm.value["sodium"] = 'NA';
-    }
-    if (this.invetigationForm.value["potassium"] == '') {
-      this.invetigationForm.value["potassium"] = 'NA';
-    }
-    if (this.invetigationForm.value["chlorine"] == '') {
-      this.invetigationForm.value["chlorine"] = 'NA';
-    }
-    if (this.invetigationForm.value["calcium"] == '') {
-      this.invetigationForm.value["calcium"] = 'NA';
-    }
-    if (this.invetigationForm.value["phosphate"] == '') {
-      this.invetigationForm.value["phosphate"] = 'NA';
-    }
-    if (this.invetigationForm.value["magnesium"] == '') {
-      this.invetigationForm.value["magnesium"] = 'NA';
-    }
-    if (this.invetigationForm.value["urea"] == '') {
-      this.invetigationForm.value["urea"] = 'NA';
-    }
-    if (this.invetigationForm.value["creatinine"] == '') {
-      this.invetigationForm.value["creatinine"] = 'NA';
-    }
-    if (this.invetigationForm.value["lactate_levels"] == '') {
-      this.invetigationForm.value["lactate_levels"] = 'NA';
-    }
-    if (this.invetigationForm.value["bilirubin_levels"] == '') {
-      this.invetigationForm.value["bilirubin_levels"] = 'NA';
-    }
-    if (this.invetigationForm.value["cord_ph"] == '') {
-      this.invetigationForm.value["cord_ph"] = 'NA';
-    }
-    if (this.invetigationForm.value["csf_culture_tsb_value"] == '') {
-      this.invetigationForm.value["csf_culture_tsb_value"] = 'NA';
-    }
-    if (this.invetigationForm.value["total_leucocute_count"] == '') {
-      this.invetigationForm.value["total_leucocute_count"] = 'NA';
-    }
-    if (this.invetigationForm.value["absolute_neutrophil_count"] == '') {
-      this.invetigationForm.value["absolute_neutrophil_count"] = 'NA';
-    }
-    if (this.invetigationForm.value["thrombocytopenia"] == '') {
-      this.invetigationForm.value["thrombocytopenia"] = 'NA';
-    }
-
-    // const newUser = vim.common_api.baby_investigation_add(
-    //   vim.invetigationForm.value
-    // );
-    // newUser.subscribe(
-    //   response => {
-    //     vim.reset();
-    //     vim.success(response, "investigationFormSubmit");
-    //     vim.isBabyInvestEdit = false;
-    //   },
-    //   error => {
-    //     console.error("errro", error);
-    //   }
-    // );
-    vim.invetigationForm.value["reading"] = localStorage.getItem('reading');
+  this.setData();
    vim.goToNextReadingForm();
   }
-  /**
-   *
-   * @param response
-   * @param api_type
-   * @method: success
-   * @purpose :-  it is a common helper
-   */
+
   success(response, api_type) {
     const vim = this;
-    if (api_type == "investigationFormSubmit") {
-      if (vim.isSuccess(response)) {
-        vim.toastr.success(
-          "",
-          "Information Updated succesfully"
-        );
-        vim.responseArray = [];
-        this.page = 1;
-        vim.dataServiceObj = vim.dataService.getOption();
-        vim.get_investigation(vim.dataServiceObj.study_id, vim.login_hospital['id'], vim.page, vim.readingDataService.reading);
-      } else {
-        if (vim.isAlreadyExist(response)) {
-          vim.toastr.warning("Already Exist!!", response["message"]);
-        } else {
-          vim.errorToasty(response);
-        }
-      }
-    } else if (api_type == "get_investigation") {
+     if (api_type == "get_investigation") {
       if (vim.isSuccess(response)) {
         if (this.page == 1) {
           vim.responseArray = [];
           vim.responseArray = response["response"];
           vim.isBabyInvestEdit=false;
-        } else {
-          if (response["status"] == 404) {
-            // vim.responseArray = [];
-          }
-          else if (response["response"].length > 0) {
-            vim.temp_study_id = response["response"][0].study_id;
-            if (vim.temp_study_id == vim.id) {
-            } else {
-              vim.responseArray = [];
-            }
-
-            for (var i = 0; i < response["response"].length; i++) {
-              vim.responseArray.push(response["response"][i]);
-              vim.temp_study_id = vim.id;
-            }
-          }
-        }
+        } 
         vim.commonAsyn.isHide();
       } else {
         vim.responseArray = [];
@@ -1326,15 +1182,6 @@ export class BabyInvestigationComponent implements OnInit, OnChanges {
     }
   }
 
-
-
-  /**
-   *
-   * @param error
-   * @param api_type
-   * @purpose :-  This is error handler method is called.
-   * @method: errorHandler
-   */
   errorHandler(error, api_type) {
     const vim = this;
     if (api_type == "investigationFormSubmit") {
@@ -1559,6 +1406,31 @@ export class BabyInvestigationComponent implements OnInit, OnChanges {
   }
 
   updateInvestigationForm(){
+    this.setData();
+    if(!this.invetigationForm.valid){
+      return ;
+    }
+    else{
+      console.log(this.invetigationForm['value'])
+      this.common_api.updateFormData('patient/update/baby_investigation/',this.id,this.readingDataService.reading,this.invetigationForm['value']).subscribe(result=>{
+          if(result['status']!=200){
+              this.toastr.error('Error','Some error occured.Please check');
+          }
+          else{
+            this.updateSuccessResponse(result);
+          }
+      })
+    }
+  }
+
+  updateSuccessResponse(result){
+    this.toastr.success('','Data Updated Successfully');
+    this.get_investigation(this.dataServiceObj.study_id, this.login_hospital['id'], this.page, this.readingDataService.reading);
+    this.isEditClicked=false;
+  //  this.saveReadingFormData(undefined);
+  }
+
+  setData(){
     this.invetigationForm.value["reading"] = localStorage.getItem('reading');
     this.invetigationForm.value["tab_name"] = "baby_investigation";
 
@@ -1647,26 +1519,5 @@ export class BabyInvestigationComponent implements OnInit, OnChanges {
     if (this.invetigationForm.value["thrombocytopenia"] == '') {
       this.invetigationForm.value["thrombocytopenia"] = 'NA';
     }
-    if(!this.invetigationForm.valid){
-      return ;
-    }
-    else{
-      console.log(this.invetigationForm['value'])
-      this.common_api.updateFormData('patient/update/baby_investigation/',this.id,this.readingDataService.reading,this.invetigationForm['value']).subscribe(result=>{
-          if(result['status']!=200){
-              this.toastr.error('Error','Some error occured.Please check');
-          }
-          else{
-            this.updateSuccessResponse(result);
-          }
-      })
-    }
-  }
-
-  updateSuccessResponse(result){
-    this.toastr.success('','Data Updated Successfully');
-    this.get_investigation(this.dataServiceObj.study_id, this.login_hospital['id'], this.page, this.readingDataService.reading);
-    this.isEditClicked=false;
-  //  this.saveReadingFormData(undefined);
   }
 }

@@ -353,31 +353,10 @@ export class BabyAppearComponent implements OnInit, OnChanges {
     this.transformDate(this.babyApears.value);
     const vim = this;
     vim.submitted = true;
-    
     if (vim.babyApears.invalid) {
       return;
     }
-
-    if (this.babyApears.value["baby_cry_sound_status"] == '') {
-      this.babyApears.value["baby_cry_sound_status"] = 'NA';
-    }
-
-    if (this.babyApears.value["hypothermia_status_value"] == '') {
-      this.babyApears.value["hypothermia_status_value"] = 'NA';
-    }
-
-    if (this.babyApears.value["time_of_reading_hours"] == '') {
-      this.babyApears.value["time_of_reading_hours"] = 'NA';
-    }
-
-    if (this.babyApears.value["time_of_reading_minute"] == '') {
-      this.babyApears.value["time_of_reading_minute"] = 'NA';
-    }
-
-    if (this.babyApears.value["baby_weight_at_birth"] == '') {
-      this.babyApears.value["baby_weight_at_birth"] = 'NA';
-    }
-   
+   this.setData();
     this.babyApears.value["reading"] = localStorage.getItem('reading');
     vim.goToNextReadingForm();
   }
@@ -391,44 +370,12 @@ export class BabyAppearComponent implements OnInit, OnChanges {
    */
   success(response, api_type) {
     const vim = this;
-    if (api_type == "babyApearsFormSubmit") {
-      if (vim.isSuccess(response)) {
-        vim.toastr.success(
-          "",
-          "Information Updated succesfully"
-        );
-        vim.responseArray = [];
-        this.page = 1;
-        vim.dataServiceObj = vim.dataService.getOption();
-        vim.get_baby_apears(vim.dataServiceObj.study_id, vim.login_hospital['id'], vim.page, vim.readinDataService.reading);
-      } else {
-        if (vim.isAlreadyExist(response)) {
-          vim.toastr.warning("Already Exist!!", response["message"]);
-        } else {
-          vim.errorToasty(response);
-        }
-      }
-    } else if (api_type == "get_baby_appears") {
+    if (api_type == "get_baby_appears") {
       if (vim.isSuccess(response)) {
         if (this.page == 1) {
           vim.responseArray = [];
           vim.responseArray = response["response"];
           vim.isBabyAppearEdit=false;
-        } else {
-          if (response["status"] == 404) {
-          }
-          else if (response["response"].length > 0) {
-            vim.temp_study_id = response["response"][0].study_id;
-            if (vim.temp_study_id == vim.id) {
-            } else {
-              vim.responseArray = [];
-            }
-
-            for (var i = 0; i < response["response"].length; i++) {
-              vim.responseArray.push(response["response"][i]);
-              vim.temp_study_id = vim.id;
-            }
-          }
         }
         vim.commonAsyn.isHide();
       } else {
@@ -613,27 +560,7 @@ export class BabyAppearComponent implements OnInit, OnChanges {
     if(vim.babyApears.invalid) {
       return;
     } else {
-
-      if (this.babyApears.value["baby_cry_sound_status"] == '') {
-        this.babyApears.value["baby_cry_sound_status"] = 'NA';
-      }
-
-      if (this.babyApears.value["time_of_reading_hours"] == '') {
-        this.babyApears.value["time_of_reading_hours"] = 'NA';
-      }
-  
-      if (this.babyApears.value["time_of_reading_minute"] == '') {
-        this.babyApears.value["time_of_reading_minute"] = 'NA';
-      }
-  
-      if (this.babyApears.value["hypothermia_status_value"] == '') {
-        this.babyApears.value["hypothermia_status_value"] = 'NA';
-      }
-
-      if (this.babyApears.value["baby_weight_at_birth"] == '') {
-        this.babyApears.value["baby_weight_at_birth"] = 'NA';
-      }
-      
+        this.setData();
     vim.common_api.updateFormData('patient/update/baby_appears/', vim.id, vim.readinDataService.reading, vim.babyApears.value)
     .subscribe(result => {
       if(result['status'] != 200) {
@@ -647,6 +574,28 @@ export class BabyAppearComponent implements OnInit, OnChanges {
         vim.get_baby_apears(vim.dataServiceObj.study_id, vim.login_hospital['id'], this.page, vim.readinDataService.reading);
       }
     })
+    }
+  }
+
+  setData(){
+    if (this.babyApears.value["baby_cry_sound_status"] == '') {
+      this.babyApears.value["baby_cry_sound_status"] = 'NA';
+    }
+
+    if (this.babyApears.value["time_of_reading_hours"] == '') {
+      this.babyApears.value["time_of_reading_hours"] = 'NA';
+    }
+
+    if (this.babyApears.value["time_of_reading_minute"] == '') {
+      this.babyApears.value["time_of_reading_minute"] = 'NA';
+    }
+
+    if (this.babyApears.value["hypothermia_status_value"] == '') {
+      this.babyApears.value["hypothermia_status_value"] = 'NA';
+    }
+
+    if (this.babyApears.value["baby_weight_at_birth"] == '') {
+      this.babyApears.value["baby_weight_at_birth"] = 'NA';
     }
   }
 }
