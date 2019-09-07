@@ -286,43 +286,12 @@ export class BabyCvComponent implements OnInit {
 
   success(response, api_type) {
     const vim = this;
-  if (api_type == "get_cv") {
-      if (vim.isSuccess(response)) {
-        if (this.page == 1) {
-          vim.responseArray = [];
-          vim.responseArray = response["response"];
-          vim.isBabyCvEdit=false;
-        } else {
-        }
-        vim.commonAsyn.isHide();
-      } else {
-        vim.responseArray = [];
-        vim.commonAsyn.isHide();
-        if (vim.isAlreadyExist(response)) {
-        } else {
-        }
-      }
+    if (api_type == "get_cv") {
+      vim.responseArray = [];
+      vim.responseArray = response["response"];
+      vim.isBabyCvEdit=false;
+      vim.commonAsyn.isHide();
     }
-  }
-
-  isSuccess(response) {
-    const vim = this;
-    if (response.hasOwnProperty("status") && response["status"] === vim.success_status ) {
-      return true;
-    } else if (response["status"] === 404) { return true;}
-    return false;
-  }
-
-  isAlreadyExist(response) {
-    const vim = this;
-    if (response.hasOwnProperty("status") && response["status"] === vim.already_exist_status) { return true;}
-    return false;
-  }
-
-  errorToasty(error) {
-    const vim = this;
-    if (error.hasOwnProperty("message")) { vim.toastr.error("Error!", error["message"]);} 
-    else {vim.toastr.error("Error!", "Somethink wrong!!!..");}
   }
 
   get_cv(id, hospital_id, page, reading) {
