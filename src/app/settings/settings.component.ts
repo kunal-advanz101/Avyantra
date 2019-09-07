@@ -109,12 +109,15 @@ export class SettingsComponent implements OnInit {
   }
   setPermission(event, index, fieldname) {
     if (event.target.checked) {
-      this.userList[index][fieldname] = 1;
-      this.userListDummy.push(this.userList[index]);
+      this.updateList(index,fieldname,1);
     } else {
-      this.userList[index][fieldname] = 0;
-      this.userListDummy.push(this.userList[index]);
+      this.updateList(index,fieldname,0);
     }
+  }
+
+  updateList(index,fieldName,value){
+    this.userList[index][fieldName] = value;
+    this.userListDummy.push(this.userList[index]);
   }
   updatePermission() {
     this.commonService.updateUserPermission(this.hospitalId, this.hospitalBranchId, this.userListDummy).subscribe(response => {
