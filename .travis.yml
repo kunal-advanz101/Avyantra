@@ -36,5 +36,5 @@ script:
   - ng test --watch=false --code-coverage                        
 
 after_script:
-  - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
+  - ./cc-test-reporter format-coverage -o lcov ./coverage/lcov.info
   - ./cc-test-reporter upload-coverage
