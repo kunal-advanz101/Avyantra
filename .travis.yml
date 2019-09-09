@@ -1,39 +1,24 @@
 
-language: node_js
-
-node_js:
-  - "12"
-
-os:
-  - linux
-
+dist: trusty
 sudo: false
 
-rvm:
-  - 2.2.0
+language: node_js
+node_js:
+  - '8'
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 
 cache:
-    npm: false
-    directories:
-        - $HOME/.npm
-
-env:
-  global:
-    - CC_TEST_REPORTER_ID=faefa8d9c31551e59a3adbd19521631c87fa025076ec4c2bb6fa9bc56a46c647
+  directories:
+    - ./node_modules
 
 install:
-  - npm install  
-  - npm i -g mocha istanbul nyc --save-dev
-  - npm i mocha express body-parser --save-dev
-
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+  - npm install
 
 script:
-  - npm run coverage                         
-
-after_script:
-  - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
-  - ./cc-test-reporter upload-coverage
+  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox                       
