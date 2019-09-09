@@ -22,7 +22,7 @@ install:
 
 script:
   - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox                       
-
+  - npm run coverage    
 env:
   global:
     - CC_TEST_REPORTER_ID=c4f3b89e96fcd41aab5ad9beee4e44426ef7239b84d1be12d1e29031ccdfd098
