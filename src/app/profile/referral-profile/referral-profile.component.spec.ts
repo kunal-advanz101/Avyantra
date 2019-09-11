@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { ReferralProfileComponent } from './referral-profile.component';
 import { passwordPipe } from '../../shared/pipes/encrypt-password.pipe';
@@ -9,11 +10,17 @@ import { ToastrModule } from "ngx-toastr";
 import { CommonService } from 'src/app/shared/service/common/common.service';
 // import { tick } from '@angular/core/src/render3';
 
+=======
+// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe('ReferralProfileComponent', () => {
-  let component: ReferralProfileComponent;
-  let fixture: ComponentFixture<ReferralProfileComponent>;
+// import { ReferralProfileComponent } from './referral-profile.component';
+>>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e
 
+// describe('ReferralProfileComponent', () => {
+//   let component: ReferralProfileComponent;
+//   let fixture: ComponentFixture<ReferralProfileComponent>;
+
+<<<<<<< HEAD
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -320,3 +327,22 @@ describe('ReferralProfileComponent', () => {
   });
 
 });
+=======
+//   beforeEach(async(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [ ReferralProfileComponent ]
+//     })
+//     .compileComponents();
+//   }));
+
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(ReferralProfileComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
+
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });
+>>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e

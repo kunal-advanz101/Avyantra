@@ -674,7 +674,7 @@ export class BabyInvestigationComponent implements OnInit, OnChanges {
         vim.invetigationForm.patchValue({
           baby_thyroid_result: 'NA'
         })
-        vim.invetigationForm.value["baby_thyroid_result"] = 'NA';
+        vim.invetigationForm.controls['baby_thyroid_result'].setValue('NA');
 
         vim.invetigationForm.controls["baby_thyroid_result"].clearValidators();
         vim.invetigationForm.controls["baby_thyroid_result"].updateValueAndValidity();
@@ -1519,5 +1519,15 @@ export class BabyInvestigationComponent implements OnInit, OnChanges {
     if (this.invetigationForm.value["thrombocytopenia"] == '') {
       this.invetigationForm.value["thrombocytopenia"] = 'NA';
     }
+  }
+
+  setValidators(fieldName){
+    this.invetigationForm.controls[fieldName].setValidators([Validators.required]);
+    this.invetigationForm.controls[fieldName].updateValueAndValidity();
+  }
+  clearValidators(fieldName){
+    this.invetigationForm.value[fieldName] = 'NA';
+    this.invetigationForm.controls[fieldName].clearValidators();
+    this.invetigationForm.controls[fieldName].updateValueAndValidity();
   }
 }

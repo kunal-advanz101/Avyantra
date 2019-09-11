@@ -1,5 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+<<<<<<< HEAD
 import { StaffProfileComponent } from './staff-profile.component';
 import { passwordPipe } from '../../shared/pipes/encrypt-password.pipe';
 import { ToastrService } from 'ngx-toastr';
@@ -14,11 +15,15 @@ import { ToastrModule } from "ngx-toastr";
 
 
 
+=======
+// import { StaffProfileComponent } from './staff-profile.component';
+>>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e
 
-describe('StaffProfileComponent', () => {
-  let component: StaffProfileComponent;
-  let fixture: ComponentFixture<StaffProfileComponent>;
+// describe('StaffProfileComponent', () => {
+//   let component: StaffProfileComponent;
+//   let fixture: ComponentFixture<StaffProfileComponent>;
 
+<<<<<<< HEAD
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
@@ -57,3 +62,22 @@ describe('StaffProfileComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+=======
+//   beforeEach(async(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [ StaffProfileComponent ]
+//     })
+//     .compileComponents();
+//   }));
+
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(StaffProfileComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
+
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });
+>>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e
