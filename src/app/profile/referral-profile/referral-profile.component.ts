@@ -128,4 +128,12 @@ export class ReferralProfileComponent implements OnInit {
     }
   }
 
+  ///swap type between text and password.
+  swapper(){
+    if(this.is_toggle){
+      return 'text';
+    }
+    return 'password';
+  }
+
 }

@@ -35,9 +35,9 @@ export class ReferralSignupComponent implements OnInit {
       userName: ["", [Validators.required, Validators.minLength(6)]],
       contactNumber: ["", [Validators.required, Validators.minLength(10)]],
       email: ["", [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      address: ["",[Validators.required]],
-      city: ["",[Validators.required, Validators.maxLength(32)]],
-      state: ["",[Validators.required, Validators.maxLength(32)]],
+      address: ["", [Validators.required]],
+      city: ["", [Validators.required, Validators.maxLength(32)]],
+      state: ["", [Validators.required, Validators.maxLength(32)]],
       pincode: ["", [Validators.minLength(6)]],
       password: ["", [Validators.required, Validators.maxLength(15)]]
     });

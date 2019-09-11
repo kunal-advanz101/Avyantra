@@ -8,6 +8,8 @@ import { MatIconModule } from "@angular/material";
 import {NgxMaskModule} from 'ngx-mask'
 import { BabyAppearComponent } from './baby-appear.component';
 import { DataService } from '../../shared/service/data.service';
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 export const routes: Routes = [
   {
@@ -25,8 +27,10 @@ describe('BabyAppearComponent', () => {
       declarations: [ BabyAppearComponent ],
       imports: [FormsModule, ReactiveFormsModule, HttpClientModule,
         MatIconModule,
+        NgbDatepickerModule,
         RouterTestingModule.withRoutes(routes),
         ToastrModule.forRoot(),
+        BsDatepickerModule.forRoot(),
         NgxMaskModule.forRoot()],
         providers:[DataService]
     })

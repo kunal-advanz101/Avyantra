@@ -77,4 +77,11 @@ export class TopNavBarComponent implements OnInit {
     }
   }
 
+  toggleCollapse(){
+    if(window.screen.width < 1000){
+      return "#navbarSupportedContent";
+    }
+    return "";
+  }
+
 }

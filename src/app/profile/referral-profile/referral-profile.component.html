@@ -145,9 +145,9 @@
                   </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="form-group has-error has-danger ">
-                        <div>{{referralProfile[0].password | passwordEcryptPipe}}</div>
-                      </div>
+                  <div class="form-group has-error has-danger ">
+                    <div>{{referralProfile[0].password | passwordEcryptPipe}}</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -388,7 +388,7 @@
                 <div class="form-group has-error has-danger ">
                   <div>
                     <input type="text" class="form-control" formControlName="pincode" mask="000000">
-                    <i class="{{password_class}}" aria-hidden=true (click)="show_password()" style="position: absolute;right: 20px;bottom: 25px;"></i>
+                    <!-- <i class="{{password_class}}" aria-hidden=true (click)="show_password()" style="position: absolute;right: 20px;bottom: 25px;"></i> -->
                     <div
                       *ngIf="referralProfileForm.controls['pincode'].invalid && (referralProfileForm.controls['pincode'].dirty || referralProfileForm.controls['pincode'].touched)"
                       class="error-msg">
@@ -410,8 +410,14 @@
               <div class="col-md-8">
                 <div class="form-group has-error has-danger ">
                   <div>
-                    <input type="text" class="form-control" formControlName="password" [patterns]="customPatterns"
-                      mask="A*">
+                    <!-- <input type="text" class="form-control" formControlName="password" [patterns]="customPatterns"
+                      mask="A*" > -->
+                    <!-- // -->
+                    <input [type]="swapper()" class="form-control" formControlName="password" [patterns]="customPatterns"
+                      mask="A*" >
+                    <i class="{{password_class}}" aria-hidden=true (click)="show_password()"
+                      style="position: absolute;right: 20px;bottom: 25px;"></i>
+                    <!-- // -->
                     <div *ngIf="referralProfileForm.controls['password'].invalid && (referralProfileForm.controls['password'].dirty ||
                     referralProfileForm.controls['password'].touched)" class="error-msg text-left">
                       <div *ngIf="referralProfileForm.controls['password'].errors.required">
