@@ -393,6 +393,7 @@ export class AntibioticAdministrationComponent implements OnInit {
 
   antibioticFormSubmit() {
     const vim = this;
+    vim.transformDate(vim.antibioticAdministrationForm.value);
     vim.submitted = true;
     if (vim.antibioticAdministrationForm.invalid) {
       return;
@@ -543,6 +544,7 @@ export class AntibioticAdministrationComponent implements OnInit {
       this.saveReadingFormData(this.antibioticAdministrationForm['value']);
     }
   }
+
 
   updateAntibioticForm(){
    this.setData();

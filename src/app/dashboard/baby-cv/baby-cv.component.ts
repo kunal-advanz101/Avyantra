@@ -260,16 +260,19 @@ export class BabyCvComponent implements OnInit {
   reset() {
     this.createForm(null);
   }
+
   open(content, obj) {
     this.submitted = false;
     if (!_.isEmpty(obj)) {
       this.isBabyCvEdit = true; this.isEditClicked = true;
       this.updateForm(obj);
     } else {
+
       this.isBabyCvEdit = true;
       this.createForm(this.id);
     }
   }
+
 
   babyCVFormSubmit() {
     const vim = this;

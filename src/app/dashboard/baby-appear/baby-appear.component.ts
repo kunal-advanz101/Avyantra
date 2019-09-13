@@ -353,6 +353,7 @@ export class BabyAppearComponent implements OnInit, OnChanges {
     this.transformDate(this.babyApears.value);
     const vim = this;
     vim.submitted = true;
+    
     if (vim.babyApears.invalid) {
       return;
     }
