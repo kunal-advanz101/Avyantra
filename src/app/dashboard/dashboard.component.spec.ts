@@ -25,6 +25,10 @@
 // import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 // import { ToastrModule } from "ngx-toastr";
 // import { DataService } from '../shared/service/data.service';
+<<<<<<< HEAD
+// import { TopNavBarComponent } from '../shared/core/components/top-nav-bar/top-nav-bar.component';
+=======
+>>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e
 
 // declare var $: any;
 // export const routes: Routes = [
@@ -57,6 +61,10 @@
 //         BabyGitComponent,
 //         BabyInvestigationComponent,
 //         FinalComponent,
+<<<<<<< HEAD
+//         TopNavBarComponent,
+=======
+>>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e
 //         AntibioticAdministrationComponent ],
 //       imports: [
 //         MatTabsModule, MatIconModule,NgxMaskModule.forRoot(), BsDatepickerModule.forRoot(),
@@ -71,10 +79,26 @@
 //   beforeEach(() => {
 //     fixture = TestBed.createComponent(DashboardComponent);
 //     component = fixture.componentInstance;
+<<<<<<< HEAD
+//     let setValue={};
+//     spyOn(window.localStorage,"setItem").and.callFake((key,value)=>{
+//       return setValue[key]=value;
+//     })
+//     spyOn(window.localStorage,"getItem").and.callFake(()=>{
+//       return JSON.stringify({"hospital_name":"testname","hospital_branch_name":"testbname"})
+//     })
+    
+    
+=======
+>>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e
 //     fixture.detectChanges();
 //   });
 
 //   it('should create', () => {
+<<<<<<< HEAD
+//     localStorage.setItem("hospital_name",JSON.stringify({"hospital_name":"testname","hospital_branch_name":"testbname"}))
+=======
+>>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e
 //     expect(component).toBeTruthy();
 //   });
 // });

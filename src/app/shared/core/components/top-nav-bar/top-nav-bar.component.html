@@ -152,37 +152,37 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item" [ngClass]="{'active': selectedTab==='dashboard'}" *ngIf="showPermission('Dashboard')">
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='dashboard'}" *ngIf="showPermission('Dashboard')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
     <a class="nav-link" routerLink="/admin/dashboard" (click)="activeTab('dashboard')">Dashboard <span class="sr-only">(current)</span></a>
     </li>
-    <li class="nav-item" [ngClass]="{'active': selectedTab==='dashboard'}" *ngIf="showPermission('DashboardStaff')">
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='dashboard'}" *ngIf="showPermission('DashboardStaff')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
       <a class="nav-link" routerLink="/admin/hospital-staff" (click)="activeTab('dashboard')">Dashboard <span class="sr-only">(current)</span></a>
     </li>
-    <li class="nav-item" [ngClass]="{'active': selectedTab==='dashboardReferra'}" *ngIf="showPermission('DashboardRD')">
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='dashboardReferra'}" *ngIf="showPermission('DashboardRD')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
       <a class="nav-link" routerLink="/admin/referral-doctors" (click)="activeTab('dashboardReferral')">Dashboard <span class="sr-only">(current)</span></a>
     </li>
-    <li class="nav-item" [ngClass]="{'active': selectedTab==='addbranch'}" *ngIf="showPermission('AddBranch')">
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='addbranch'}" *ngIf="showPermission('AddBranch')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
     <a class="nav-link" routerLink="/admin/addbranch" (click)="activeTab('addbranch')">Add Branch</a>
     </li>
-    <li class="nav-item" [ngClass]="{'active': selectedTab==='hospitalstaff'}" *ngIf="showPermission('HospitalStaff')">
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='hospitalstaff'}" *ngIf="showPermission('HospitalStaff')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
     <a class="nav-link" routerLink="/admin/staff" (click)="activeTab('hospitalstaff')" >Hospital Staff</a>
     </li>
-    <li class="nav-item" [ngClass]="{'active': selectedTab==='medicalrecords'}" *ngIf="showPermission('MedicalRecords')">
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='medicalrecords'}" *ngIf="showPermission('MedicalRecords')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
     <a class="nav-link" routerLink="/admin/medical-records" (click)="activeTab('medicalrecords')">Medical Records</a>
     </li>
-    <li class="nav-item" [ngClass]="{'active': selectedTab==='messagecenter'}" *ngIf="showPermission('MessageCenter')">
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='messagecenter'}" *ngIf="showPermission('MessageCenter')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
     <a class="nav-link" (click)="activeTab('messagecenter')">Message Center</a>
     </li>
-    <li class="nav-item" [ngClass]="{'active': selectedTab==='myprofile'}" *ngIf="showPermission('MyProfile')">
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='myprofile'}" *ngIf="showPermission('MyProfile')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
     <a class="nav-link" routerLink="/admin/my-profile" (click)="activeTab('myprofile');changeProfile();" >My Profile</a>
     </li>
-    <li class="nav-item d-none" [ngClass]="{'active': selectedTab==='subscription'}">
+    <li class="nav-item d-none" [ngClass]="{'active': selectedTab==='subscription'}" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
     <a class="nav-link" (click)="activeTab('subscription')" >Subscription</a>
     </li>
-     <li class="nav-item" [ngClass]="{'active': selectedTab==='settings'}" *ngIf="showPermission('Settings')">
+     <li class="nav-item" [ngClass]="{'active': selectedTab==='settings'}" *ngIf="showPermission('Settings')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
     <a class="nav-link" routerLink="/admin/setting" (click)="activeTab('settings')" >Settings</a>
     </li>
-    <li class="nav-item" [ngClass]="{'active': selectedTab==='hospitalConnect'}" *ngIf="showPermission('hospitalConnect')">
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='hospitalConnect'}" *ngIf="showPermission('hospitalConnect')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
       <a class="nav-link" routerLink="/admin/hospital-connect" (click)="activeTab('hospitalConnect')" >Hospital Connect</a>
       </li>
   </ul>

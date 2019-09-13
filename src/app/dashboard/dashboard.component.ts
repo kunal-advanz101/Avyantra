@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, ViewEncapsulation, HostBinding, Directive, ViewContainerRef  } from "@angular/core";
+import { Component, OnInit, Input, ViewEncapsulation, HostBinding, Directive, ViewContainerRef } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Router } from "@angular/router";
-import {DataService} from '../shared/service/data.service';
-import {ReadingDataService} from '../shared/service/reading-data.service';
+import { DataService } from '../shared/service/data.service';
+import { ReadingDataService } from '../shared/service/reading-data.service';
 import * as _ from "underscore";
 import { CommonService } from "../shared/service/common/common.service";
-import { ToastrService } from "ngx-toastr";import { Common } from '../shared/service/common/common';
+import { ToastrService } from "ngx-toastr"; import { Common } from '../shared/service/common/common';
 ;
 
 @Component({
@@ -19,13 +19,13 @@ import { ToastrService } from "ngx-toastr";import { Common } from '../shared/ser
 export class DashboardComponent implements OnInit {
   patientForm: FormGroup;
   formRef: any;
-  selectedItem='baby-profile';
+  selectedItem = 'baby-profile';
   readingData;
   readinDataObj;
   dataServiceObj;
-  invalidForm=false;
-   messageString='';
-   haveUnsavedData=false;
+  invalidForm = false;
+  messageString = '';
+  haveUnsavedData = false;
   // confirmationModalOpen: boolean =false;
 
   constructor(
@@ -33,10 +33,10 @@ export class DashboardComponent implements OnInit {
     public config: NgbModalConfig,
     private modalService: NgbModal,
     private router: Router,
-    private dataService:DataService,
-    public readingDataService:ReadingDataService,
+    private dataService: DataService,
+    public readingDataService: ReadingDataService,
     private common_api: CommonService,
-    private toastr:ToastrService,
+    private toastr: ToastrService,
     private commonAsyn: Common
   ) {
 
@@ -45,59 +45,59 @@ export class DashboardComponent implements OnInit {
   id = 0;
   hospital_id = 0;
   hospital_name = "";
-  message:string;
-  selectedActiveTab:string;
-  disable_btn=true;
-  allFormData:any
-  foundEmpty=false;
+  message: string;
+  selectedActiveTab: string;
+  disable_btn = true;
+  allFormData: any
+  foundEmpty = false;
 
   ngOnInit() {
     this.foundEmpty = false;
-    this.selectedItem='baby-profile';
+    this.selectedItem = 'baby-profile';
     this.readinDataObj = this.readingDataService.getComponentFlag();
-    
-    if(this.router.url != '/dashboard/baby-profile')
-    this.selectedItem='baby-profile';
+
+    if (this.router.url != '/dashboard/baby-profile')
+      this.selectedItem = 'baby-profile';
     this.router.navigate(['dashboard/baby-profile']);
     this.dataService.currentMessage.subscribe(message => {
       this.message = message;
-      this.selectedItem='baby-profile';
+      this.selectedItem = 'baby-profile';
     })
 
     this.readingDataService.tabMessage.subscribe(message => {
-      this.selectedItem=message;
+      this.selectedItem = message;
     })
-   }
-
-   openBabyProfile() {
-     this.selectedItem='baby-profile';
-     this.readingDataService.showBabyProfileForm("openBabyProfileForm");
-     this.dataService.clearSearchText("resetSearchBar")
-     this.readingDataService.isMotherProfileHaveResp = true;
-     this.readingDataService.reading = '';
-     this.dataService.clearOption();
-     this.readingDataService.reset();
-     this.router.navigate(['dashboard/baby-profile']);
-   }
-   
-  closeMenu() {
-  var targetElement = document.getElementsByClassName("hamburger-menu")[0];
-  targetElement.classList.remove('open');
   }
 
-   clickHamburger() {
-     let menus = document.querySelectorAll('.hamburger-menu');
-     for (let i = 0; i < menus.length; i++) {
+  openBabyProfile() {
+    this.selectedItem = 'baby-profile';
+    this.readingDataService.showBabyProfileForm("openBabyProfileForm");
+    this.dataService.clearSearchText("resetSearchBar")
+    this.readingDataService.isMotherProfileHaveResp = true;
+    this.readingDataService.reading = '';
+    this.dataService.clearOption();
+    this.readingDataService.reset();
+    this.router.navigate(['dashboard/baby-profile']);
+  }
+
+  closeMenu() {
+    var targetElement = document.getElementsByClassName("hamburger-menu")[0];
+    targetElement.classList.remove('open');
+  }
+
+  clickHamburger() {
+    let menus = document.querySelectorAll('.hamburger-menu');
+    for (let i = 0; i < menus.length; i++) {
       let menu = menus[i];
       menu.querySelector('.hamburger-button').addEventListener('click', this.buttonClickListener);
     }
-   }
+  }
 
-    buttonClickListener(evt) {
-   let menu = evt.target.parentElement;
-   let menuCssClass = menu.getAttribute('class');
-   menu.setAttribute('class', menuCssClass.indexOf('open') >= 0 ? menuCssClass.replace('open', '') : (menuCssClass + ' open'));
- }
+  buttonClickListener(evt) {
+    let menu = evt.target.parentElement;
+    let menuCssClass = menu.getAttribute('class');
+    menu.setAttribute('class', menuCssClass.indexOf('open') >= 0 ? menuCssClass.replace('open', '') : (menuCssClass + ' open'));
+  }
 
 
 
@@ -110,8 +110,8 @@ export class DashboardComponent implements OnInit {
     this.id = id;
   }
 
-  activeTab(newValue:string){
-    this.selectedItem=newValue;
+  activeTab(newValue: string) {
+    this.selectedItem = newValue;
   }
 
   open(content) {
@@ -123,7 +123,7 @@ export class DashboardComponent implements OnInit {
     //console.error("close this event")
     this.formRef.close();
   }
-  
+
   logout() {
     localStorage.clear();
     this.router.navigate(["/"]);
@@ -134,115 +134,115 @@ export class DashboardComponent implements OnInit {
     this.readingDataService.resetAll();
   }
 
-  resetTab(){
-    this.selectedItem='baby-profile';
+  resetTab() {
+    this.selectedItem = 'baby-profile';
   }
 
-  openBabyAppear(){
-    this.readingDataService.showSaveReadingButton=true;
-   this.readingDataService.clearReadingFormData();
+  openBabyAppear() {
+    this.readingDataService.showSaveReadingButton = true;
+    this.readingDataService.clearReadingFormData();
     this.getReading();
   }
 
-  saveReading(){
+  saveReading() {
     var vim = this;
-    if(vim.validateAllFormData()){
+    if (vim.validateAllFormData()) {
       this.commonAsyn.showLoader();
-    this.readingData=this.readingDataService.getAllFormData();
-        const newUser = vim.common_api.create_new_reading(this.readingData);
-        newUser.subscribe(
-          response => {
-           if(response['status']!=200){
-            vim.toastr.error('',response['message']);
+      this.readingData = this.readingDataService.getAllFormData();
+      const newUser = vim.common_api.create_new_reading(this.readingData);
+      newUser.subscribe(
+        response => {
+          if (response['status'] != 200) {
+            vim.toastr.error('', response['message']);
             this.commonAsyn.isHide();
-           }else{
-             this.commonAsyn.isHide();
-           vim.toastr.success('',response['message']);
-           vim.readingDataService.clearReadingFormData();
-          //  vim.readingDataService.reset();
-          this.readingDataService.showSaveReadingButton=true;
-           this.selectedItem='baby-appearence';
-           vim.router.navigate(['dashboard/baby-appearence']);
+          } else {
+            this.commonAsyn.isHide();
+            vim.toastr.success('', response['message']);
+            vim.readingDataService.clearReadingFormData();
+            //  vim.readingDataService.reset();
+            this.readingDataService.showSaveReadingButton = true;
+            this.selectedItem = 'baby-appearence';
+            vim.router.navigate(['dashboard/baby-appearence']);
           }
-          },
-          error => {
-            console.error("errro", error);
-          }
-        );
+        },
+        error => {
+          console.error("errro", error);
+        }
+      );
     }
   }
 
- getReading(){
+  getReading() {
     var vim = this;
     vim.dataServiceObj = vim.dataService.getOption();
-        const newUser =  vim.common_api.get_new_reading(vim.dataServiceObj.study_id);
-        newUser.subscribe(
-          response => {
-            localStorage.setItem('reading',response['response']['reading_id']);
-            // this.readingDataService.reading = localStorage.getItem('reading');
-            // this.readingDataService.setComponentFlag('baby-appear');
-            // this.readingDataService.newReadingStatusFlags();
-            this.getLastReadingData();
-            //  this.selectedItem='baby-appearence';
-            // vim.router.navigate(['dashboard/baby-appearence']);
-          },
-          error => {
-            console.error("errro", error);
-          }
-        );
+    const newUser = vim.common_api.get_new_reading(vim.dataServiceObj.study_id);
+    newUser.subscribe(
+      response => {
+        localStorage.setItem('reading', response['response']['reading_id']);
+        // this.readingDataService.reading = localStorage.getItem('reading');
+        // this.readingDataService.setComponentFlag('baby-appear');
+        // this.readingDataService.newReadingStatusFlags();
+        this.getLastReadingData();
+        //  this.selectedItem='baby-appearence';
+        // vim.router.navigate(['dashboard/baby-appearence']);
+      },
+      error => {
+        console.error("errro", error);
+      }
+    );
   }
 
-   validateAllFormData(){
-     this.messageString='';
-     this.invalidForm=false;
-     this.allFormData=this.readingDataService.getFormValidationStatus();
-     if( this.allFormData['baby_appears']==false){
-       this.setMessage('Baby Appears')
-          this.invalidForm=true;
-     }
-     if( this.allFormData['baby_antibiotic']==false){
+  validateAllFormData() {
+    this.messageString = '';
+    this.invalidForm = false;
+    this.allFormData = this.readingDataService.getFormValidationStatus();
+    if (this.allFormData['baby_appears'] == false) {
+      this.setMessage('Baby Appears')
+      this.invalidForm = true;
+    }
+    if (this.allFormData['baby_antibiotic'] == false) {
       this.setMessage('Baby Antibiotic')
-       this.invalidForm=true;
-     }
-     if( this.allFormData['baby_cns']==false){
+      this.invalidForm = true;
+    }
+    if (this.allFormData['baby_cns'] == false) {
       this.setMessage('Baby CNS')
-      this.invalidForm=true;
+      this.invalidForm = true;
     }
-    if(this.allFormData['baby_cv']==false){
+    if (this.allFormData['baby_cv'] == false) {
       this.setMessage('Baby Cardio Vascular')
-      this.invalidForm=true;
+      this.invalidForm = true;
     }
-    if(this.allFormData['baby_git']==false){
+    if (this.allFormData['baby_git'] == false) {
       this.setMessage('Baby GIT')
-      this.invalidForm=true;
+      this.invalidForm = true;
     }
-    if( this.allFormData['baby_investigation']==false){
+    if (this.allFormData['baby_investigation'] == false) {
       this.setMessage('Baby Investigation')
-      this.invalidForm=true;
+      this.invalidForm = true;
     }
-    if( this.allFormData['baby_resp']==false){
+    if (this.allFormData['baby_resp'] == false) {
       this.setMessage('Baby Respiratory')
-      this.invalidForm=true;
+      this.invalidForm = true;
     }
-    if(this.allFormData['baby_final']==false){
+    if (this.allFormData['baby_final'] == false) {
       this.setMessage('Baby Final')
-      this.invalidForm=true;
+      this.invalidForm = true;
     }
-    if(this.invalidForm){
-      this.toastr.error('','You have some unfilled entries in ' + this.messageString +'.'+'Please check');
+    if (this.invalidForm) {
+      this.toastr.error('', 'You have some unfilled entries in ' + this.messageString + '.' + 'Please check');
       return false;
     }
-      return true;
-   }
+    return true;
+  }
 
-   setMessage(formName){
-      if(this.messageString!==''){
-            this.messageString=this.messageString+', '+formName;
-      }
-      else{
-          this.messageString=formName;
-      }
-   }
+  setMessage(formName) {
+    if (this.messageString !== '') {
+      this.messageString = this.messageString + ', ' + formName;
+    }
+    else {
+      this.messageString = formName;
+    }
+  }
   // removeDataConfirmation() {
   //   this.readingDataService.clearReadingFormData();
   //   this.confirmationModalOpen = false;
@@ -252,40 +252,42 @@ export class DashboardComponent implements OnInit {
   //   this.confirmationModalOpen = false;
   // }
 
-  getLastReadingData(){
+  getLastReadingData() {
     this.foundEmpty = false;;
-    this.common_api.getLastReadingData(this.dataServiceObj.study_id).subscribe(result=>{
-      if(result['status']!=200){
+    this.common_api.getLastReadingData(this.dataServiceObj.study_id).subscribe(result => {
+      if (result['status'] != 200) {
         this.readingDataService.clearReadingFormData();
         this.goToBabyAppear();
       }
-      else{
+      else {
         var vim = this;
-        _.find(result['response'], function(num){
-          if(_.isEmpty(num)) {
-            vim.toastr.error('','There is some technical issues, Please search the record again');
+        _.find(result['response'], function (num) {
+          console.log(result['response']);
+          
+          if (_.isEmpty(num)) {
+            vim.toastr.error('', 'There is some technical issues, Please search the record again');
             vim.foundEmpty = true;
             return vim.readingDataService.readingFormsData = {};
           }
         });
-        if(!this.foundEmpty) {
+        if (!this.foundEmpty) {
           // console.log("not empty");Object.keys(myObj).length
-          this.readingDataService.readingFormsData=result['response'];
+          this.readingDataService.readingFormsData = result['response'];
           this.goToBabyAppear();
         }
       }
     })
   }
 
-  goToBabyAppear(){
-        this.readingDataService.reading = localStorage.getItem('reading');
-        this.readingDataService.setComponentFlag('baby-appear');
-        this.readingDataService.newReadingStatusFlags();
-        this.selectedItem='baby-appearence';
-        this.router.navigate(['dashboard/baby-appearence']);
+  goToBabyAppear() {
+    this.readingDataService.reading = localStorage.getItem('reading');
+    this.readingDataService.setComponentFlag('baby-appear');
+    this.readingDataService.newReadingStatusFlags();
+    this.selectedItem = 'baby-appearence';
+    this.router.navigate(['dashboard/baby-appearence']);
   }
 
-  goToDashboard(){
+  goToDashboard() {
     this.dataService.clearOption();
     this.readingDataService.reset();
     this.readingDataService.clearReadingFormData();
