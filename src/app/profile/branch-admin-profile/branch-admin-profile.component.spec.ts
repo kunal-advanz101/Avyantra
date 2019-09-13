@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 
 import { BranchAdminProfileComponent } from './branch-admin-profile.component';
@@ -9,17 +8,11 @@ import {  HttpClientModule } from '@angular/common/http';
 import { AppHelper } from 'src/app/shared/helper/app.helper';
 import { ToastrModule } from 'ngx-toastr';
 import { By } from '@angular/platform-browser';
-=======
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { BranchAdminProfileComponent } from './branch-admin-profile.component';
->>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e
+describe('BranchAdminProfileComponent', () => {
+  let component: BranchAdminProfileComponent;
+  let fixture: ComponentFixture<BranchAdminProfileComponent>;
 
-// describe('BranchAdminProfileComponent', () => {
-//   let component: BranchAdminProfileComponent;
-//   let fixture: ComponentFixture<BranchAdminProfileComponent>;
-
-<<<<<<< HEAD
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BranchAdminProfileComponent,
@@ -123,22 +116,3 @@ it ("Hide password",()=>{
 
   
 });
-=======
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ BranchAdminProfileComponent ]
-//     })
-//     .compileComponents();
-//   }));
-
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(BranchAdminProfileComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
->>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e

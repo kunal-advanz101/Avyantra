@@ -1,23 +1,19 @@
 // import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-<<<<<<< HEAD
 import { HospitalConnectComponent } from './hospital-connect.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppHelper } from '../shared/helper/app.helper';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { async, TestBed, ComponentFixture } from '@angular/core/testing';
 
 
-=======
-// import { HospitalConnectComponent } from './hospital-connect.component';
->>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e
 
-// describe('HospitalConnectComponent', () => {
-//   let component: HospitalConnectComponent;
-//   let fixture: ComponentFixture<HospitalConnectComponent>;
+describe('HospitalConnectComponent', () => {
+  let component: HospitalConnectComponent;
+  let fixture: ComponentFixture<HospitalConnectComponent>;
 
-<<<<<<< HEAD
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HospitalConnectComponent ],
@@ -56,22 +52,3 @@ import { HttpClientModule } from '@angular/common/http';
     expect(component).toBeTruthy();
   });
 });
-=======
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ HospitalConnectComponent ]
-//     })
-//     .compileComponents();
-//   }));
-
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(HospitalConnectComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
->>>>>>> f03a917a7c22c21fa21dab0bb1ac1923386a5c7e
