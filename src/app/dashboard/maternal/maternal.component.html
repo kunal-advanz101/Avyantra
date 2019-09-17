@@ -919,7 +919,7 @@
                   </div>
                 </div>
                 <input type="text" [dropSpecialCharacters]="false" mask="S*" class="form-control"
-                  *ngIf="this.chkVagSwabCulture" formControlName="vaginal_swab_culture_three" autocomplete="off">
+                  *ngIf="this.chkVagSwabCulture" id="vaginal_swab_culture_three" formControlName="vaginal_swab_culture_three" autocomplete="off">
                 <input type="text" readonly value="NA" *ngIf="!this.chkVagSwabCulture" class="form-control">
               </div>
               <div *ngIf="maternalForm.controls['vaginal_swab_culture_three'].invalid &&
@@ -985,7 +985,7 @@
                     </label>
                   </div>
                 </div>
-                <input type="text" class="form-control" *ngIf="this.chkAminoticFluidCultureIfPos"
+                <input type="text" class="form-control" *ngIf="this.chkAminoticFluidCultureIfPos" id="amniotic_fluid_culture_three"
                   formControlName="amniotic_fluid_culture_three" [dropSpecialCharacters]="false" mask="S*" autocomplete="off">
                 <input type="text" readonly value="NA" *ngIf="!this.chkAminoticFluidCultureIfPos" class="form-control">
               </div>

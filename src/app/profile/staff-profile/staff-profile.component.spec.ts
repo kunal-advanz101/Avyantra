@@ -11,6 +11,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from "ngx-toastr";
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 
 
@@ -57,4 +58,101 @@ describe('StaffProfileComponent', () => {
     localStorage.setItem("login_hospital",JSON.stringify({"id":92, "staff_id":1234, "hospital_branch_id":12345}));
     expect(component).toBeTruthy();
   });
+  it('form invalid when empty', () => {
+    expect(component.staffProfileForm.valid).toBeFalsy();
+  });
+  it('form validation', () => {
+    //form invalid
+    let component=fixture.debugElement.componentInstance;
+    component.staffProfileForm['value']['firstName']="testfirstNameeee";
+    component.staffProfileForm['value']['lastName']="testLastNameeee";
+    component.staffProfileForm['value']['contactNumber']=123456;
+    component.staffProfileForm['value']['emailAddress']="testemail";
+    component.staffProfileForm['value']['userName']="testU";
+    component.staffProfileForm['value']['password']="testP";
+    component.staffProfileForm['value']['assignRole']="";
+    component.staffProfileForm['value']['speciality']="";
+    component.staffProfileForm['value']['branch']="";
+    expect(component.staffProfileForm.valid).toBeFalsy();    
+  });
+  it('First name validations',()=>{
+    let errors={};
+    let firstName=component.staffProfileForm.controls['firstName'];
+    firstName.setValue('testfirstnameeee');
+    errors=firstName.errors||{};
+    expect(errors['maxlength']).toBeTruthy();
+    firstName.setValue('testFirstName');
+    errors=firstName.errors||{};
+    expect(errors['maxlength']).toBeFalsy();
+  });
+  it('Last name validations',()=>{
+    let errors={};
+    let lastName=component.staffProfileForm.controls['lastName'];
+    lastName.setValue('testfirstnameeee');
+    errors=lastName.errors||{};
+    expect(errors['maxlength']).toBeTruthy();
+    lastName.setValue('testFirstName');
+    errors=lastName.errors||{};
+    expect(errors['maxlength']).toBeFalsy();
+  });
+  it('Contact Number validations',()=>{
+    let errors={};
+    let contactNumber=component.staffProfileForm.controls['contactNumber'];
+    contactNumber.setValue('12345');
+    errors=contactNumber.errors||{};
+    expect(errors['minlength']).toBeTruthy();
+    contactNumber.setValue('1234567890');
+    errors=contactNumber.errors||{};
+    expect(errors['minlength']).toBeFalsy();
+  });
+  it('Email validations',()=>{
+    let component=fixture.debugElement.componentInstance;
+    let errors={};
+    let email=component.staffProfileForm.controls['emailAddress'];
+    email.setValue('testDemogmail.com');
+    errors=email.errors||{};
+    expect(errors['email']).toBeTruthy();
+    expect(errors['pattern']).toBeTruthy();
+    email.setValue('testDemo@gmail.com');
+    errors=email.errors||{};
+    expect(errors['email']).toBeFalsy(); 
+  });
+  it('User Name validations',()=>{
+    let errors={};
+    let username=component.staffProfileForm.controls['userName'];
+    username.setValue('test');
+    errors=username.errors||{};
+    expect(errors['minlength']).toBeTruthy();
+    username.setValue('test123');
+    errors=username.errors||{};
+    expect(errors['minlength']).toBeFalsy();
+  });
+  it('password validations',()=>{
+    let errors={};
+    let password=component.staffProfileForm.controls['password'];
+    password.setValue('test');
+    errors=password.errors||{};
+    expect(errors['minlength']).toBeTruthy();
+    password.setValue('test123');
+    errors=password.errors||{};
+    expect(errors['minlength']).toBeFalsy();
+  }); 
+  it("cancel button",()=>{
+    component.cancel();
+    expect(component.isEdit).toBeFalsy();
+  });
+  it('Hide and Show password', () => {
+    let icontrol = fixture.debugElement.query(By.css('i')).nativeElement;
+    let component = fixture.debugElement.componentInstance;
+    icontrol.click();
+    fixture.detectChanges();
+    expect(component.is_toggle).toBeFalsy();
+    expect(component.password_class).toBe('fa fa-eye-slash');
+    //if button is clicked again than the method is called again
+    // icontrol.click();
+    // fixture.detectChanges();
+    // //expect(component.is_toggle).toBeTruthy();
+    // expect(component.password_class).toBe('fa fa-eye-slash');
+  });
+  
 });
