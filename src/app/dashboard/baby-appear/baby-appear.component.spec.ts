@@ -164,7 +164,7 @@ describe('BabyAppearComponent', () => {
   it("when goToNextReadingForm method is called", () => {
     component.goToNextReadingForm();
   });
-  it("when goToNextReadingForm method is called", () => {
+  it("when getReadingFormData method is called", () => {
     var obj = {
       reading_date: "NA",
       time_of_reading_hours: "NA",
