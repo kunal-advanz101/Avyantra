@@ -6,6 +6,7 @@ import {Router, Routes} from "@angular/router";
 import { ToastrModule } from "ngx-toastr";
 import { ForgetComponent } from './forget.component';
 import { By } from '@angular/platform-browser';
+import { executionAsyncId } from 'async_hooks';
 
 export const routes: Routes = [
   {
@@ -89,6 +90,19 @@ describe('ForgetComponent', () => {
    cerrors=confirmPassField.errors || {};
     expect(errors['minlength']).toBeTruthy();
     expect(cerrors['minlength']).toBeTruthy();
-  })
+  });
+  it("when forget_password method is called",()=>{
+    component.createForm();
+    component.forget_password();
+    expect(component.forgetWithPasswordForm.invalid).toBeTruthy();
+  });
+  it("when is_match method is called",()=>{
+    component.is_match();
+  });
+  it("when forget_password_email method is called",()=>{
+    component.createForm();
+    component.forget_password_email();
+    expect(component.forgetForm.invalid).toBeTruthy();
 
+  });
 });

@@ -51,4 +51,30 @@ describe('HospitalConnectComponent', () => {
     localStorage.setItem("login_hospital",JSON.stringify({"referral_id":123}));
     expect(component).toBeTruthy();
   });
+
+  //methods
+
+  it('nextPage method', () => {
+    spyOn(component,'gethospitalList');
+    component.nextPage(2);
+    expect(component.gethospitalList).toHaveBeenCalled();
+  });
+
+  it('onDropDownChange method', () => {
+    spyOn(component,'gethospitalList');
+    component.onDropDownChange(2);
+    expect(component.gethospitalList).toHaveBeenCalled();
+  });
+
+  it('updateStatus method', () => {
+    spyOn(component,'success');
+    spyOn(component,'gethospitalList');
+
+    let something = component["common"].updateSubscriptionStatus(123,123,123);
+    something.subscribe((data)=>{
+      console.log(data);
+      expect(component.success).toHaveBeenCalled();
+      expect(component.gethospitalList).toHaveBeenCalled();
+    });
+  });
 });

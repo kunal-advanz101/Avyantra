@@ -10,6 +10,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { HospitalStaffComponent } from './hospital-staff.component';
 import { By } from '@angular/platform-browser';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,7 @@ describe('HospitalStaffComponent', () => {
         HttpClientModule,
         NgxPaginationModule,
         AngularMultiSelectModule,
+        NgbModalModule,
         RouterTestingModule.withRoutes(routes),
         ToastrModule.forRoot()],
       providers:[AppHelper]
@@ -128,5 +130,57 @@ it('password field validations',()=>{
   password.setValue('testuser');
   errors=password.errors||{};
   expect(errors['minlength']).toBeFalsy();
-})
+});
+it("when setSettings method is called",()=>{
+  component.setSettings("disabledFlag");
+});
+it("when addStaff method is called",()=>{
+  component.addStaff();
+  expect(component.addStaffForm.invalid).toBeTruthy();
+});
+it("swtichTab method",()=>{
+  component.switchTab("tab");
+});
+it("when changeBranch method is called",()=>{
+  let mockEvent={
+    target:{value:"1"}
+  }
+  component.changeBranch(mockEvent);
+});
+it("when getSelectedBranch method is called",()=>{
+  component.getSelectedBranch(100);
+});
+it("when updateStaff method is called",()=>{
+  component.updateStaff();
+});
+it("when updateForm method is called",()=>{
+  let HStaff=component.addStaffForm;
+  let obj={};
+  spyOn(HStaff, 'patchValue');
+  component.updateForm(obj);
+  expect(HStaff.patchValue).toHaveBeenCalled();
+
+});
+it("when nextPage method is called",()=>{
+  spyOn(component,'getBranchStaffCount');
+  component.nextPage(1);
+  expect(component.getBranchStaffCount).toHaveBeenCalled();
+});
+it("when onDropDownChange method is called",()=>{
+  spyOn(component,'getBranchStaff');
+  component.onDropDownChange(100);
+  expect(component.getBranchStaff).toHaveBeenCalled();
+});
+it("when  close method is called",()=>{
+  component.open(null,{staff:"xyz"});
+  spyOn(component.formRef,'close');
+  component.close();  
+  expect(component.formRef.close).toHaveBeenCalled();
+  expect(component.isEdit).toBeFalsy();
+});
+it("when open method is called",()=>{
+  spyOn(component,'open');
+  component.open(null,{});
+  expect(component.open).toHaveBeenCalled();
+});
 });

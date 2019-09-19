@@ -16,7 +16,7 @@ export const routes: Routes = [
   
 ];
 
-fdescribe('TopNavBarComponent', () => {
+describe('TopNavBarComponent', () => {
   let component: TopNavBarComponent;
   let fixture: ComponentFixture<TopNavBarComponent>;
   
@@ -32,7 +32,7 @@ fdescribe('TopNavBarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TopNavBarComponent);
     component = fixture.componentInstance;
-  
+    
     let store = {};
     spyOn(window.localStorage, 'getItem').and.callFake(function() {
       return JSON.stringify({"test":"test"});
