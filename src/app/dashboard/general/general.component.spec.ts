@@ -351,7 +351,7 @@ describe('GeneralComponent', () => {
     }
     component.transformDate(date);
     expect(date.baby_birth_date).toBe("01/01/2001");
-  });
+  }); 
   it("when checkLength method is called", () => {
     let value1 = 12;
     component.createForm(100);
@@ -600,4 +600,5 @@ describe('GeneralComponent', () => {
     //expect(component.is_api_call).toBeTruthy();
     //expect(component.showMrNumber).toBeTruthy();
   });
+ 
 });

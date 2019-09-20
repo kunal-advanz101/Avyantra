@@ -1,8 +1,14 @@
-import { DateLevelPipe } from './date-level.pipe';
+// import { DateLevelPipe } from './date-level.pipe';
+// import { pipe } from 'rxjs';
 
-describe('DateLevelPipe', () => {
-  it('create an instance', () => {
-    const pipe = new DateLevelPipe();
-    expect(pipe).toBeTruthy();
-  });
-});
+// describe('DateLevelPipe', () => {
+ 
+//   it('create an instance', () => {
+//    let  pipe = new DateLevelPipe();
+//     expect(pipe).toBeTruthy();
+//   });
+//   it("should call transform method",()=>{
+  
+//   });
+  
+// });

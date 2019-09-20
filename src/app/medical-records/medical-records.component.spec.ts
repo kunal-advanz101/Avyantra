@@ -96,5 +96,48 @@ describe('MedicalRecordsComponent', () => {
     expect(errors['maxlength']).toBeFalsy();
     expect(babyName.errors).toBeFalsy();
   });
+  it("when changeBranch method is called",()=>{
+    spyOn(component,'createForm');
+   // expect(component.changeBranch({})).toB
+    let event={
+      target:{value:"1"}
+    }
+    component.changeBranch(event);  
+    expect(component.createForm).toHaveBeenCalled();
+  });
+  it("onDropDownChange method",()=>{
+    spyOn(component,'getMedicalRecords');
+    component.onDropDownChange(1);
+    expect(component.getMedicalRecords).toHaveBeenCalled();
+  });
+  it("nextPage method",()=>{
+     spyOn(component,'getMedicalRecords');
+     component.nextPage(1);
+     expect(component.getMedicalRecords).toHaveBeenCalled();
+  });
+  it("close method",()=>{
+    spyOn(component,'close');
+    component.close();
+    expect(component.close).toHaveBeenCalled();
+  });
+  it("updateMedicalRecord method",()=>{
+    component.updateMedicalRecord();
+    expect(component.addMedicalRecordForm.invalid).toBeTruthy();
+  })
+  it("updateForm method ",()=>{
+    let medical=component.addMedicalRecordForm;
+     let obj={
+      mmrn: "",
+      babyName: "",
+      motherName:""
+     }
+     spyOn(medical,'patchValue');
+     component.updateForm(obj);
+     expect(medical.patchValue).toHaveBeenCalled();
+  });
+  it("onMedicalRecordSubmit method",()=>{
+    component.onMedicalRecordSubmit();
+    expect(component.addMedicalRecordForm.invalid).toBeTruthy();
+  });
 
 });
