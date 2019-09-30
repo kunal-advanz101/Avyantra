@@ -58,6 +58,9 @@ export class CommonService {
   patient_general_info_updated(data) {
     return this.http.post(this.baseUrl + "patient/general/add",data,this.jwt());
   }
+  // patient_general_info_updated(data) {
+  //   return this.http.post(this.baseUrl + "patient/general/add",data,this.jwt());
+  // }
   addMethod(data, method_name = "") {
     return this.http.post(this.baseUrl + "patient/" + method_name + "/add",data,this.jwt());
   }
@@ -215,8 +218,46 @@ export class CommonService {
     return this.http.get( this.baseUrl +'hospitalStaff/getReferralHospitalCount', this.jwt()
   );
   }
-  updateSubscriptionStatus(referralDoctorId,hospitalId,statusId){
-    return this.http.put( this.baseUrl +'hospitalBranch/hospitalBranchProfile/', this.jwt());
+  updateSubscriptionStatus(referralDoctorId,hospitalId,newStatusObj){
+    return this.http.put( this.baseUrl +'hospitalStaff/updateStatus/'+hospitalId+'/'+referralDoctorId,newStatusObj, this.jwt());
   }
-
+  getRegisteredReferralDoctorRecordsCount(hospitalId){
+    return this.http.get( this.baseUrl +'hospital/getRefferalCount/'+hospitalId, this.jwt());
+  }
+  getRegisteredReferralDoctors(hospitalId,start,limit){
+    return this.http.get( this.baseUrl +'hospital/getRegisteredRefferal/'+hospitalId+'/'+start+'/'+limit, this.jwt());
+  }
+  getStaffUsers(hospitalId){
+    return this.http.get( this.baseUrl +'hospitalStaff/getStaff/'+hospitalId, this.jwt());
+  }
+  sendMessage(senderId,recieverId,textMessage){
+    return this.http.post(this.baseUrl +'hospital/sendMessage/'+ senderId +'/'+ recieverId , textMessage, this.jwt()); 
+  }
+  getHospitalAndBranchAdmins(userId){
+    return this.http.get( this.baseUrl +'hospital/getStaffAdmin/'+userId, this.jwt());
+  }
+  getMessages(senderId,recieverId){
+    return this.http.get( this.baseUrl +'hospital/getMessage/'+senderId+'/'+recieverId, this.jwt());
+  }
+  getHospitalReferralDoctors(hospitalId){
+    return this.http.get( this.baseUrl +'hospitalStaff/getReferralStaff/'+hospitalId, this.jwt());
+  }
+  getReferralHospitalAdmins(referralId){
+    return this.http.get( this.baseUrl +'hospital/getReferralAdmin/'+referralId, this.jwt());
+  }
+  updateReadStatus(senderId,recieverId){
+    return this.http.put( this.baseUrl +'hospital/markMessageRead/'+senderId+'/'+recieverId, this.jwt());
+  }
+  getReferralStaffList(referralId){
+    return this.http.get( this.baseUrl +'hospitalStaff/referralStaff/'+referralId, this.jwt());
+  }
+  getAllBranchStaffs(staffId){
+    return this.http.get( this.baseUrl +'hospitalStaff/staff/'+staffId, this.jwt());
+  }
+  getStaffReferralDoctrs(staffId){
+    return this.http.get( this.baseUrl +'hospitalStaff/staffReferral/'+staffId, this.jwt());
+  }
+  getBranchStaffUsers(hospitalBranchId){
+    return this.http.get( this.baseUrl +'hospitalStaff/getBranchStaff/'+hospitalBranchId, this.jwt());
+  }
 }

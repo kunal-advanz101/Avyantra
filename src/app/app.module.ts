@@ -73,6 +73,7 @@ import { StaffProfileComponent } from './profile/staff-profile/staff-profile.com
 import { ReferralProfileComponent } from './profile/referral-profile/referral-profile.component';
 import { BranchAdminProfileComponent } from './profile/branch-admin-profile/branch-admin-profile.component';
 import { HospitalConnectComponent } from './hospital-connect/hospital-connect.component';
+import { MessageCenterComponent } from './message-center/message-center.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true
 };
@@ -104,7 +105,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SettingsComponent,
     MedicalRecordsComponent,
     ReferralDoctorStaffComponent,
-    MyProfileComponent,passwordPipe,userTypePipe, HospitalStaffDashboardComponent, StaffProfileComponent, BranchAdminProfileComponent, ReferralProfileComponent, HospitalConnectComponent],
+    MyProfileComponent,passwordPipe,userTypePipe, HospitalStaffDashboardComponent, StaffProfileComponent, BranchAdminProfileComponent, ReferralProfileComponent, HospitalConnectComponent,MessageCenterComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
