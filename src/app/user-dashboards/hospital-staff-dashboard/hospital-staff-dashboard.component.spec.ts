@@ -7,11 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppHelper } from 'src/app/shared/helper/app.helper';
 import { ToastrModule } from 'ngx-toastr';
+import { CommonService } from 'src/app/shared/service/common/common.service';
+import { of } from 'rxjs';
 
 describe('HospitalStaffDashboardComponent', () => {
   let component: HospitalStaffDashboardComponent;
   let fixture: ComponentFixture<HospitalStaffDashboardComponent>;
-
+  let commonService:CommonService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HospitalStaffDashboardComponent ],
@@ -25,9 +27,12 @@ describe('HospitalStaffDashboardComponent', () => {
       ],
       providers:[
         AppHelper,
+        CommonService
       ]
     })
     .compileComponents();
+    commonService = TestBed.get(CommonService);
+
   }));
 
   beforeEach(() => {
@@ -49,4 +54,41 @@ describe('HospitalStaffDashboardComponent', () => {
 
     expect(component).toBeTruthy();
   });
+  it('onDropDownChange method',()=>{
+    spyOn(component,'getMedicalRecords');
+    component.onDropDownChange(10);
+    expect(component.getMedicalRecords).toHaveBeenCalled();
+  });
+  it('nextPage method',()=>{
+    spyOn(component,'getMedicalRecords');
+    component.nextPage(1);
+    expect(component.getMedicalRecords).toHaveBeenCalled();
+  });
+  it('getMedicalRecords method',()=>{
+    let res = {
+      response:{
+      records:"baby"
+      }
+    }
+      var spy = spyOn(commonService,'getMedicalRecords').and.returnValue(of(res));
+      component.getMedicalRecords();
+      spy.calls.mostRecent().returnValue.subscribe(commonService=>{
+          expect(commonService).toBe(res);
+      });
+  })
+  it('readingDashboard method',()=>{
+    component.readingDashboard("test1");
+  });
+  it('getMedicalRecordsCount method',()=>{
+    let res = {
+      response:{
+      records:"baby"
+      }
+    }
+      var spy = spyOn(commonService,'getMedicalRecordsCount').and.returnValue(of(res));
+      component.getMedicalRecordsCount();
+      spy.calls.mostRecent().returnValue.subscribe(commonService=>{
+          expect(commonService).toBe(res);
+      });
+  })
 });
