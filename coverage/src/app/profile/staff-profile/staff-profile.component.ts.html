@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">59.38% </span>
+        <span class="strong">65.52% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>38/64</span>
+        <span class='fraction'>38/58</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/12</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">53.85% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>7/13</span>
+        <span class='fraction'>6/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">57.63% </span>
+        <span class="strong">64.15% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>34/59</span>
+        <span class='fraction'>34/53</span>
       </div>
     </div>
     <p class="quiet">
@@ -183,8 +183,7 @@
 <a name='L135'></a><a href='#L135'>135</a>
 <a name='L136'></a><a href='#L136'>136</a>
 <a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L138'></a><a href='#L138'>138</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -269,9 +268,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -281,36 +279,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -358,8 +356,8 @@ export class StaffProfileComponent implements OnInit {
 &nbsp;
   ngOnInit() {
     this.getLoggedInUserInfo();
-    this.createForm();
     this.getStaffProfile();
+    this.createForm();
   }
 &nbsp;
   createForm(){
@@ -370,7 +368,7 @@ export class StaffProfileComponent implements OnInit {
       firstName: ["", [Validators.required, Validators.maxLength(15)]],
       lastName: ["", [Validators.required, Validators.maxLength(15)]],
       contactNumber: ["", [Validators.required, Validators.minLength(10)]],
-      emailAddress: ["", [Validators.required, Validators.email, Validators.pattern('[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}')]],
+      emailAddress: ["", [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
       userName: ["", [Validators.required, Validators.minLength(6)]],
       password: ["", [Validators.required, Validators.minLength(6)]],
       reportTo: [""],
@@ -407,9 +405,8 @@ export class StaffProfileComponent implements OnInit {
   }
 &nbsp;
   getStaffProfile() {
-&nbsp;
     this.commomService.getStaffProfile(this.staffId).subscribe(<span class="fstat-no" title="function not covered" >result </span>=&gt; {
-<span class="cstat-no" title="statement not covered" >      if(this.helper.success(result)){</span>
+      if(this.helper.success(result)){
 <span class="cstat-no" title="statement not covered" >        this.success(result, 'getStaffProfile');</span>
       }else{
 <span class="cstat-no" title="statement not covered" >        this.helper.errorHandler(result);</span>
@@ -419,11 +416,11 @@ export class StaffProfileComponent implements OnInit {
 &nbsp;
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  updateProfile(</span></span>){
 <span class="cstat-no" title="statement not covered" >    console.error(this.staffProfileForm['value'])</span>
-<span class="cstat-no" title="statement not covered" >    if(!this.staffProfileForm.valid){</span>
+    if(!this.staffProfileForm.valid){
 <span class="cstat-no" title="statement not covered" >      return ;</span>
     }else{
 <span class="cstat-no" title="statement not covered" >      this.commomService.updateStaffProfile(this.staffProfileForm['value'],this.staffId).subscribe(<span class="fstat-no" title="function not covered" >result=</span>&gt;{</span>
-<span class="cstat-no" title="statement not covered" >        if(this.helper.success(result)){</span>
+        if(this.helper.success(result)){
 <span class="cstat-no" title="statement not covered" >          this.success(result, 'updateStaffProfile');</span>
 <span class="cstat-no" title="statement not covered" >          this.isEdit=false;</span>
 <span class="cstat-no" title="statement not covered" >          this.getStaffProfile();</span>
@@ -439,16 +436,16 @@ export class StaffProfileComponent implements OnInit {
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  success(</span>response,apitype){
-<span class="cstat-no" title="statement not covered" >    if(apitype=='getStaffProfile'){</span>
+    if(apitype=='getStaffProfile'){
 <span class="cstat-no" title="statement not covered" >      this.staffProfile=response['response'];</span>
     }
-<span class="cstat-no" title="statement not covered" >    if(apitype=='updateStaffProfile'){</span>
+    if(apitype=='updateStaffProfile'){
 <span class="cstat-no" title="statement not covered" >      this.toasty.success(response['message'],'')</span>
     }
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  show_password(</span>) {
-<span class="cstat-no" title="statement not covered" >    if (this.is_toggle) {</span>
+    if (this.is_toggle) {
 <span class="cstat-no" title="statement not covered" >      this.is_toggle = false;</span>
 <span class="cstat-no" title="statement not covered" >      this.password = "password";</span>
 <span class="cstat-no" title="statement not covered" >      this.password_class = "fa fa-eye-slash";</span>
@@ -466,7 +463,7 @@ export class StaffProfileComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 30 2019 11:45:29 GMT+0530 (India Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 23 2019 11:55:51 GMT+0530 (India Standard Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

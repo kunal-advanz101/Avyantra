@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">64.41% </span>
+        <span class="strong">66.04% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>38/59</span>
+        <span class='fraction'>35/53</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>3/12</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">61.54% </span>
+        <span class="strong">58.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>8/13</span>
+        <span class='fraction'>7/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">62.96% </span>
+        <span class="strong">64.58% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>34/54</span>
+        <span class='fraction'>31/48</span>
       </div>
     </div>
     <p class="quiet">
@@ -254,7 +254,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -264,11 +264,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -285,16 +285,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -348,7 +348,7 @@ export class MyProfileComponent implements OnInit {
       user_name: ["",[Validators.required,Validators.minLength(6)]],
       contact_number: [""],
       address: [""],
-      email_address: ["",[Validators.required,Validators.email,Validators.pattern('[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}')]],
+      email_address: ["",[Validators.required,Validators.email,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
       city: [""],
       state: [""],
       pincode: [""],
@@ -384,7 +384,7 @@ export class MyProfileComponent implements OnInit {
 &nbsp;
   getMyProfile() {
     this.commomService.getMyProfile(this.hospitalId).subscribe(result =&gt; {
-      <span class="missing-if-branch" title="else path not taken" >E</span>if(this.helper.success(result)){
+      if(this.helper.success(result)){
         this.success(result, 'getProfile');
       }else{
         // this.medicalRecords=[];
@@ -394,11 +394,11 @@ export class MyProfileComponent implements OnInit {
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  updateProfile(</span></span>){
-<span class="cstat-no" title="statement not covered" >    if(!this.myProfileForm.valid){</span>
+    if(!this.myProfileForm.valid){
 <span class="cstat-no" title="statement not covered" >      return ;</span>
     }else{
 <span class="cstat-no" title="statement not covered" >      this.commomService.updateHospitalProfile(this.myProfileForm['value'],this.hospitalId).subscribe(<span class="fstat-no" title="function not covered" >result=</span>&gt;{</span>
-<span class="cstat-no" title="statement not covered" >        if(this.helper.success(result)){</span>
+        if(this.helper.success(result)){
 <span class="cstat-no" title="statement not covered" >          this.success(result, 'updateProfile');</span>
 <span class="cstat-no" title="statement not covered" >          this.isEdit=false;</span>
 <span class="cstat-no" title="statement not covered" >          this.getMyProfile();</span>
@@ -415,16 +415,16 @@ export class MyProfileComponent implements OnInit {
   }
 &nbsp;
   success(response,apitype){
-    <span class="missing-if-branch" title="else path not taken" >E</span>if(apitype=='getProfile'){
+    if(apitype=='getProfile'){
       this.myProfile=response['response'];
     }
-    <span class="missing-if-branch" title="if path not taken" >I</span>if(apitype=='updateProfile'){
+    if(apitype=='updateProfile'){
 <span class="cstat-no" title="statement not covered" >      this.toasty.success(response['message'],'')</span>
     }
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  show_password(</span>) {
-<span class="cstat-no" title="statement not covered" >    if (this.is_toggle) {</span>
+    if (this.is_toggle) {
 <span class="cstat-no" title="statement not covered" >      this.is_toggle = false;</span>
 <span class="cstat-no" title="statement not covered" >      this.password = "password";</span>
 <span class="cstat-no" title="statement not covered" >      this.password_class = "fa fa-eye-slash";</span>
@@ -442,7 +442,7 @@ export class MyProfileComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 30 2019 11:45:29 GMT+0530 (India Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 23 2019 11:55:51 GMT+0530 (India Standard Time)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

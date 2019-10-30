@@ -29,8 +29,8 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
-script:
-  - ng test --code-coverage --no-progress --browsers=ChromiumHeadlessNoSandbox                         
+# script:
+#   - ng test --code-coverage --no-progress --browsers=ChromiumHeadlessNoSandbox                         
 
 after_script:
   - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info

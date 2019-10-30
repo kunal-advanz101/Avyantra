@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">36.36% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/11</span>
+        <span class='fraction'>4/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,21 +30,21 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/3</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">37.5% </span>
+        <span class="strong">60% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/8</span>
+        <span class='fraction'>3/5</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -63,18 +63,7 @@
 <a name='L15'></a><a href='#L15'>15</a>
 <a name='L16'></a><a href='#L16'>16</a>
 <a name='L17'></a><a href='#L17'>17</a>
-<a name='L18'></a><a href='#L18'>18</a>
-<a name='L19'></a><a href='#L19'>19</a>
-<a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -83,25 +72,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit } from '@angular/core';
 import { Common } from "../../shared/service/common/common";
-import { CommonService } from 'src/app/shared/service/common/common.service';
-import { AppHelper } from 'src/app/shared/helper/app.helper';
 &nbsp;
 @Component({
   selector: 'app-hospital-admin',
@@ -109,19 +89,12 @@ import { AppHelper } from 'src/app/shared/helper/app.helper';
   styleUrls: ['./hospital-admin.component.css']
 })
 export class HospitalAdminComponent implements OnInit {
-<span class="cstat-no" title="statement not covered" >loggedInUser:any={};</span>
-hospitalId:number;
-hospitalBranchId:number;
-userType:string;
-<span class="cstat-no" title="statement not covered" >dashboardData={};</span>
-<span class="cstat-no" title="statement not covered" >msgList=[];</span>
-<span class="fstat-no" title="function not covered" >  constructor(private <span class="cstat-no" title="statement not covered" >c</span>ommonAsyn: C</span>ommon,private <span class="cstat-no" title="statement not covered" >common:C</span>ommonService,private <span class="cstat-no" title="statement not covered" >helper:A</span>ppHelper) { }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  constructor(private <span class="cstat-no" title="statement not covered" >c</span>ommonAsyn: C</span>ommon) { }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ngOnInit(</span>) {
 <span class="cstat-no" title="statement not covered" >    this.commonAsyn.isHide();</span>
   }
-&nbsp;
-&nbsp;
 &nbsp;
 }
 &nbsp;</pre></td></tr>
@@ -130,7 +103,7 @@ userType:string;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 30 2019 11:45:29 GMT+0530 (India Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 23 2019 11:55:51 GMT+0530 (India Standard Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>
