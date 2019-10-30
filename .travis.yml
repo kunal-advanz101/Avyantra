@@ -24,10 +24,10 @@ env:
   global:
     - CC_TEST_REPORTER_ID=c4f3b89e96fcd41aab5ad9beee4e44426ef7239b84d1be12d1e29031ccdfd098
 
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+# before_script:
+#   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+#   - chmod +x ./cc-test-reporter
+#   - ./cc-test-reporter before-build
 
 # script:
 #   - ng test --code-coverage --no-progress --browsers=ChromiumHeadlessNoSandbox                         
