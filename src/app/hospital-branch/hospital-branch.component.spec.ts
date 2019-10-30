@@ -7,7 +7,7 @@ import { ToastrModule } from "ngx-toastr";
 import { AppHelper } from '../shared/helper/app.helper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('HospitalBranchComponent', () => {
+fdescribe('HospitalBranchComponent', () => {
   let component: HospitalBranchComponent;
   let fixture: ComponentFixture<HospitalBranchComponent>;
 
