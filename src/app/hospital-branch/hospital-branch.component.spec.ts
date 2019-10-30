@@ -6,7 +6,7 @@ import {NgxMaskModule} from 'ngx-mask';
 import { ToastrModule } from "ngx-toastr";
 import { AppHelper } from '../shared/helper/app.helper';
 
-describe('HospitalBranchComponent', () => {
+fdescribe('HospitalBranchComponent', () => {
   let component: HospitalBranchComponent;
   let fixture: ComponentFixture<HospitalBranchComponent>;
 
