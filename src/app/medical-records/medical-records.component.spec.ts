@@ -110,11 +110,11 @@ describe('MedicalRecordsComponent', () => {
     component.onDropDownChange(1);
     expect(component.getMedicalRecords).toHaveBeenCalled();
   });
-  it("nextPage method",()=>{
-     spyOn(component,'getMedicalRecords');
-     component.nextPage(1);
-     expect(component.getMedicalRecords).toHaveBeenCalled();
-  });
+  // it("nextPage method",()=>{
+  //    spyOn(component,'getMedicalRecords');
+  //    component.nextPage(1);
+  //    expect(component.getMedicalRecords).toHaveBeenCalled();
+  // });
   it("close method",()=>{
     spyOn(component,'close');
     component.close();
