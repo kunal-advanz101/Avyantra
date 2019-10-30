@@ -5,6 +5,7 @@ import { HospitalBranchComponent } from './hospital-branch.component';
 import {NgxMaskModule} from 'ngx-mask';
 import { ToastrModule } from "ngx-toastr";
 import { AppHelper } from '../shared/helper/app.helper';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 fdescribe('HospitalBranchComponent', () => {
   let component: HospitalBranchComponent;
@@ -16,7 +17,7 @@ fdescribe('HospitalBranchComponent', () => {
       imports: [
         FormsModule, ReactiveFormsModule, NgxMaskModule.forRoot(),
         HttpClientModule,
-        ToastrModule.forRoot()],
+        ToastrModule.forRoot(),BrowserAnimationsModule],
       providers:[AppHelper]
     })
     .compileComponents();
