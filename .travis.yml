@@ -30,7 +30,7 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - ng test --code-coverage --no-progress --browsers=Chrome_Beta_Headless                        
+  - ng test --code-coverage --no-progress --browsers=ChromiumHeadlessNoSandbox                         
 
 after_script:
   - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
